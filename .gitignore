@@ -1,0 +1,4 @@
+test-results
+node_modules
+*.log
+*.swp

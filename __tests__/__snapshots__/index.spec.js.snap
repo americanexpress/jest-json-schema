@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index should export all the matchers from the matchers directory 1`] = `
+Object {
+  "toMatchSchema": [Function],
+}
+`;
