@@ -1,7 +1,7 @@
 {
-  "name": "jest-ajv",
+  "name": "jest-json-schema",
   "version": "1.0.0",
-  "description": "JSON schema matcher for jest using ajv",
+  "description": "JSON schema matcher for jest",
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./ --ignore-path .gitignore --ext .js",
@@ -17,7 +17,6 @@
   },
   "keywords": [
     "jest",
-    "ajv",
     "json",
     "schema",
     "matcher",
