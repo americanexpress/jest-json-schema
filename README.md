@@ -8,17 +8,15 @@
 ### `toMatchSchema(schema)`
 
 Validates that an object matches the given [JSON schema](http://json-schema.org/)
+
 ```js
-beforeEach(() => {
-  schema = {
+it('validates my json', () => {
+  const schema = {
     properties: {
       hello: { type: 'string' },
     },
     required: ['hello'],
   };
-});
-
-it('validates my json', () => {
   expect({ hello: 'world' }).toMatchSchema(schema);
 });
 ```
@@ -41,6 +39,18 @@ expect.extend(matchers);
 Or if you want it available for all test files then set it up the same way in a
 [test framework script file](http://facebook.github.io/jest/docs/configuration.html#setuptestframeworkscriptfile-string)
 
+You can add custom formats for your schema validation by instead using
+`matchersWithFormats`, and passing it your custom formats.
+
+```js
+import { matchersWithFormats } from 'jest-ajv';
+
+const formats = {
+  bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+}
+
+expect.extend(matchersWithFormats(formats));
+```
 
 ## Contributing
 We welcome Your interest in the American Express Open Source Community on Github.

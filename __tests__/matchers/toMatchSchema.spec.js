@@ -1,6 +1,12 @@
-const toMatchSchema = require('../../matchers/toMatchSchema');
+const toMatchSchema = require('../../matchers/toMatchSchema')();
+const toMatchSchemaWithFormats = require('../../matchers/toMatchSchema')({
+  bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+});
 
-expect.extend({ toMatchSchema });
+expect.extend({
+  toMatchSchema,
+  toMatchSchemaWithFormats,
+});
 
 describe('toMatchSchema', () => {
   let schema;
@@ -99,7 +105,7 @@ describe('toMatchSchema', () => {
         'xx-XX',
       ].forEach((locale) => {
         it(`it matches ${locale}`, () => {
-          expect({ locale }).toMatchSchema(schema);
+          expect({ locale }).toMatchSchemaWithFormats(schema);
         });
       });
 
@@ -111,7 +117,7 @@ describe('toMatchSchema', () => {
         '123',
       ].forEach((locale) => {
         it(`it does not match ${locale}`, () => {
-          expect(() => expect({ locale }).toMatchSchema(schema))
+          expect(() => expect({ locale }).toMatchSchemaWithFormats(schema))
             .toThrowErrorMatchingSnapshot();
         });
       });

@@ -1,5 +1,10 @@
-const toMatchSchema = require('./matchers/toMatchSchema');
+const buildToMatchSchema = require('./matchers/toMatchSchema');
 
-const matchers = { toMatchSchema };
+function matchersWithFormats(formats) {
+  return {
+    toMatchSchema: buildToMatchSchema(formats),
+  };
+}
 
-module.exports = matchers;
+module.exports.matchers = matchersWithFormats();
+module.exports.matchersWithFormats = matchersWithFormats;

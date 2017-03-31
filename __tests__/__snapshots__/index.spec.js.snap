@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`index matchersWithFormats should resturn all the mathcers 1`] = `
+Object {
+  "toMatchSchema": [Function],
+}
+`;
+
 exports[`index should export all the matchers from the matchers directory 1`] = `
 Object {
   "toMatchSchema": [Function],
