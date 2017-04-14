@@ -13,7 +13,7 @@
     "url": "https://github.com/americanexpress/jest-ajv.git"
   },
   "jest": {
-    "preset": "one-amex-jest-preset"
+    "preset": "amex-jest-preset"
   },
   "keywords": [
     "jest",
@@ -30,9 +30,9 @@
     "jest-matcher-utils": "^19.0.0"
   },
   "devDependencies": {
+    "amex-jest-preset": "^3.0.0",
     "eslint": "^3.18.0",
-    "eslint-config-one-amex": "^3.0.0",
-    "jest": "^19.0.2",
-    "one-amex-jest-preset": "^2.1.0"
+    "eslint-config-amex": "^4.0.0",
+    "jest": "^19.0.2"
   }
 }
