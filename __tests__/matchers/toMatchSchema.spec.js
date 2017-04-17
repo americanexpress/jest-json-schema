@@ -1,11 +1,11 @@
-const toMatchSchema = require('../../matchers/toMatchSchema')();
-const toMatchSchemaWithFormats = require('../../matchers/toMatchSchema')({
+const toMatchSchemaUnderTest = require('../../matchers/toMatchSchema')();
+const toMatchSchemaWithFormatsUnderTest = require('../../matchers/toMatchSchema')({
   bcp47: /^[a-z]{2}-[A-Z]{2}$/,
 });
 
 expect.extend({
-  toMatchSchema,
-  toMatchSchemaWithFormats,
+  toMatchSchemaUnderTest,
+  toMatchSchemaWithFormatsUnderTest,
 });
 
 describe('toMatchSchema', () => {
@@ -21,27 +21,27 @@ describe('toMatchSchema', () => {
   });
 
   it('does not throw', () => {
-    expect({ hello: 'world' }).toMatchSchema(schema);
-    expect({ hello: 'a', world: 'b' }).toMatchSchema(schema);
-    expect({}).not.toMatchSchema(schema);
-    expect({ hello: 1 }).not.toMatchSchema(schema);
+    expect({ hello: 'world' }).toMatchSchemaUnderTest(schema);
+    expect({ hello: 'a', world: 'b' }).toMatchSchemaUnderTest(schema);
+    expect({}).not.toMatchSchemaUnderTest(schema);
+    expect({ hello: 1 }).not.toMatchSchemaUnderTest(schema);
   });
 
   it('fails for wrong type', () => {
     const testObj = { hello: 1 };
-    expect(() => expect(testObj).toMatchSchema(schema))
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
       .toThrowErrorMatchingSnapshot();
   });
 
   it('fails for missing required keys', () => {
-    expect(() => expect({}).toMatchSchema(schema))
+    expect(() => expect({}).toMatchSchemaUnderTest(schema))
       .toThrowErrorMatchingSnapshot();
   });
 
   it('fails when pattern does not match', () => {
     schema.properties.hello.pattern = '[a-z]+';
     const testObj = { hello: '123' };
-    expect(() => expect(testObj).toMatchSchema(schema))
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
       .toThrowErrorMatchingSnapshot();
   });
 
@@ -51,26 +51,26 @@ describe('toMatchSchema', () => {
       hello: 'world',
       another: 'property',
     };
-    expect(() => expect(testObj).toMatchSchema(schema))
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
       .toThrowErrorMatchingSnapshot();
   });
 
   it('includes the description in the error when provided', () => {
     const testObj = { hello: 1 };
-    expect(() => expect(testObj).toMatchSchema(schema, 'en-US language pack'))
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema, 'en-US language pack'))
     .toThrowErrorMatchingSnapshot();
   });
 
   it('fails for matching schema when using .not', () => {
     const testObj = { hello: 'world' };
-    expect(() => expect(testObj).not.toMatchSchema(schema))
+    expect(() => expect(testObj).not.toMatchSchemaUnderTest(schema))
       .toThrowErrorMatchingSnapshot();
   });
 
   it('does not crash on circular references', () => {
     const testObj = {};
     testObj.hello = testObj;
-    expect(() => expect(testObj).toMatchSchema(schema))
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
       .toThrowErrorMatchingSnapshot();
   });
 
@@ -78,7 +78,7 @@ describe('toMatchSchema', () => {
     schema.additionalProperties = false;
     const testObj = { another: 'property' };
     try {
-      expect(testObj).toMatchSchema(schema);
+      expect(testObj).toMatchSchemaUnderTest(schema);
     } catch (error) {
       expect(error.matcherResult).toEqual({
         actual: testObj,
@@ -105,7 +105,7 @@ describe('toMatchSchema', () => {
         'xx-XX',
       ].forEach((locale) => {
         it(`it matches ${locale}`, () => {
-          expect({ locale }).toMatchSchemaWithFormats(schema);
+          expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema);
         });
       });
 
@@ -117,7 +117,7 @@ describe('toMatchSchema', () => {
         '123',
       ].forEach((locale) => {
         it(`it does not match ${locale}`, () => {
-          expect(() => expect({ locale }).toMatchSchemaWithFormats(schema))
+          expect(() => expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema))
             .toThrowErrorMatchingSnapshot();
         });
       });

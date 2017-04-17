@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index matchersWithFormats should resturn all the mathcers 1`] = `
+exports[`index matchersWithFormats should return all the matchers 1`] = `
 Object {
   "toMatchSchema": [Function],
 }
