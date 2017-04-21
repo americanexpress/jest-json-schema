@@ -6,7 +6,7 @@ describe('index', () => {
   });
 
   describe('matchersWithFormats', () => {
-    it('should resturn all the mathcers', () => {
+    it('should return all the matchers', () => {
       expect(matchersWithFormats()).toMatchSnapshot();
     });
   });
