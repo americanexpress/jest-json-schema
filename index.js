@@ -1,8 +1,10 @@
 const buildToMatchSchema = require('./matchers/toMatchSchema');
+const toBeValidSchema = require('./matchers/toBeValidSchema');
 
 function matchersWithFormats(formats) {
   return {
     toMatchSchema: buildToMatchSchema(formats),
+    toBeValidSchema,
   };
 }
 
