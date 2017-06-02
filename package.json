@@ -1,6 +1,6 @@
 {
   "name": "jest-json-schema",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "JSON schema matcher for jest",
   "main": "index.js",
   "scripts": {
