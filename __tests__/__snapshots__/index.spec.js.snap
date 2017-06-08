@@ -7,6 +7,13 @@ Object {
 }
 `;
 
+exports[`index matchersWithOptions should return all the matchers 1`] = `
+Object {
+  "toBeValidSchema": [Function],
+  "toMatchSchema": [Function],
+}
+`;
+
 exports[`index should export all the matchers from the matchers directory 1`] = `
 Object {
   "toBeValidSchema": [Function],

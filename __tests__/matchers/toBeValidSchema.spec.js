@@ -12,7 +12,7 @@
  * the License.
  */
 
-const toBeValidSchemaUnderTest = require('../../matchers/toBeValidSchema');
+const toBeValidSchemaUnderTest = require('../../index').matchers.toBeValidSchema;
 
 expect.extend({
   toBeValidSchemaUnderTest,

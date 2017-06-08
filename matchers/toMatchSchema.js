@@ -16,13 +16,9 @@ const Ajv = require('ajv');
 const chalk = require('chalk');
 const { matcherHint } = require('jest-matcher-utils');
 
-function buildToMatchSchema(formats) {
+function buildToMatchSchema(ajvOptions) {
   return function toMatchSchema(received, schema, description) {
-    const ajv = new Ajv({
-      allErrors: true,
-      unknownFormats: true,
-      formats,
-    });
+    const ajv = new Ajv(ajvOptions);
     const validate = ajv.compile(schema);
     const pass = validate(received);
 

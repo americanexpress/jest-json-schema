@@ -12,10 +12,10 @@
  * the License.
  */
 
-const toMatchSchemaUnderTest = require('../../matchers/toMatchSchema')();
-const toMatchSchemaWithFormatsUnderTest = require('../../matchers/toMatchSchema')({
+const toMatchSchemaUnderTest = require('../../index').matchers.toMatchSchema;
+const toMatchSchemaWithFormatsUnderTest = require('../../index').matchersWithFormats({
   bcp47: /^[a-z]{2}-[A-Z]{2}$/,
-});
+}).toMatchSchema;
 
 expect.extend({
   toMatchSchemaUnderTest,
