@@ -38,17 +38,18 @@ expect.extend(matchers);
 Or if you want it available for all test files then set it up the same way in a
 [test framework script file](http://facebook.github.io/jest/docs/configuration.html#setuptestframeworkscriptfile-string)
 
-You can add custom formats for your schema validation by instead using
-`matchersWithFormats`, and passing it your custom formats.
+You can pass [Ajv options](http://epoberezkin.github.io/ajv/#options) using
+`matchersWithOptions` and passing it your options object. The only option passed
+by default is `allErrors: true`.
 
 ```js
-import { matchersWithFormats } from 'jest-json-schema';
+import { matchersWithOptions } from 'jest-json-schema';
 
 const formats = {
   bcp47: /^[a-z]{2}-[A-Z]{2}$/,
 }
 
-expect.extend(matchersWithFormats(formats));
+expect.extend(matchersWithOptions({ formats }));
 ```
 
 ## Contributing
