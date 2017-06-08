@@ -1,4 +1,4 @@
-const { matchers, matchersWithFormats } = require('../index.js');
+const { matchers, matchersWithFormats, matchersWithOptions } = require('../index.js');
 
 describe('index', () => {
   it('should export all the matchers from the matchers directory', () => {
@@ -8,6 +8,12 @@ describe('index', () => {
   describe('matchersWithFormats', () => {
     it('should return all the matchers', () => {
       expect(matchersWithFormats()).toMatchSnapshot();
+    });
+  });
+
+  describe('matchersWithOptions', () => {
+    it('should return all the matchers', () => {
+      expect(matchersWithOptions()).toMatchSnapshot();
     });
   });
 });
