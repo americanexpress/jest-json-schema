@@ -1,23 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`toBeValidSchema fails for valid schema when using .not 1`] = `
-"[2mexpect([22m[31mreceived[39m[2m).not.toBeValidSchema([22m[2m)[22m
+"expect(received).not.toBeValidSchema()
 
 Expected input not to be a valid JSON schema"
 `;
 
 exports[`toBeValidSchema fails schemas of invalid types 1`] = `
-"[2mexpect([22m[31mschema[39m[2m).toBeValidSchema([22m[2m)[22m
+"expect(schema).toBeValidSchema()
 
 schema
-[31m  should be object,boolean[39m
-[31m[39m"
+  should be object,boolean
+"
 `;
 
 exports[`toBeValidSchema fails schemas with invalid properties 1`] = `
-"[2mexpect([22m[31mschema[39m[2m).toBeValidSchema([22m[2m)[22m
+"expect(schema).toBeValidSchema()
 
 schema
-[31m  .properties should be object[39m
-[31m[39m"
+  .properties should be object
+"
 `;

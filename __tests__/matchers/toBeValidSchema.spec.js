@@ -12,7 +12,10 @@
  * the License.
  */
 
+const chalk = require('chalk');
 const toBeValidSchemaUnderTest = require('../../index').matchers.toBeValidSchema;
+
+chalk.enabled = false;
 
 expect.extend({
   toBeValidSchemaUnderTest,
