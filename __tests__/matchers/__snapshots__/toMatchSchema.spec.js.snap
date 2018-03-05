@@ -4,48 +4,48 @@ exports[`toMatchSchema custom formats bcp47 it does not match 123 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .locale should match format \\"bcp47\\"
-[39m"
+[31m  .locale should match format \\"bcp47\\"[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema custom formats bcp47 it does not match EN-US 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .locale should match format \\"bcp47\\"
-[39m"
+[31m  .locale should match format \\"bcp47\\"[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema custom formats bcp47 it does not match en_US 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .locale should match format \\"bcp47\\"
-[39m"
+[31m  .locale should match format \\"bcp47\\"[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema custom formats bcp47 it does not match en-us 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .locale should match format \\"bcp47\\"
-[39m"
+[31m  .locale should match format \\"bcp47\\"[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema custom formats bcp47 it does not match enus 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .locale should match format \\"bcp47\\"
-[39m"
+[31m  .locale should match format \\"bcp47\\"[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema does not crash on circular references 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .hello should be string
-[39m"
+[31m  .hello should be string[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema fails for matching schema when using .not 1`] = `
@@ -58,38 +58,38 @@ exports[`toMatchSchema fails for missing required keys 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  should have required property 'hello'
-[39m"
+[31m  should have required property 'hello'[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema fails for wrong type 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .hello should be string
-[39m"
+[31m  .hello should be string[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema fails when additional properties are found but forbidden 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  should NOT have additional properties, but found 'another'
-[39m"
+[31m  should NOT have additional properties, but found 'another'[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema fails when pattern does not match 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 received
-[31m  .hello should match pattern \\"[a-z]+\\"
-[39m"
+[31m  .hello should match pattern \\"[a-z]+\\"[39m
+[31m[39m"
 `;
 
 exports[`toMatchSchema includes the description in the error when provided 1`] = `
 "[2mexpect([22m[31mreceived[39m[2m).toMatchSchema([22m[32mschema[39m[2m)[22m
 
 en-US language pack
-[31m  .hello should be string
-[39m"
+[31m  .hello should be string[39m
+[31m[39m"
 `;
