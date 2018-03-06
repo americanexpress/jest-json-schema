@@ -12,10 +12,13 @@
  * the License.
  */
 
+const chalk = require('chalk');
 const toMatchSchemaUnderTest = require('../../index').matchers.toMatchSchema;
 const toMatchSchemaWithFormatsUnderTest = require('../../index').matchersWithFormats({
   bcp47: /^[a-z]{2}-[A-Z]{2}$/,
 }).toMatchSchema;
+
+chalk.enabled = false;
 
 expect.extend({
   toMatchSchemaUnderTest,
@@ -72,7 +75,7 @@ describe('toMatchSchema', () => {
   it('includes the description in the error when provided', () => {
     const testObj = { hello: 1 };
     expect(() => expect(testObj).toMatchSchemaUnderTest(schema, 'en-US language pack'))
-    .toThrowErrorMatchingSnapshot();
+      .toThrowErrorMatchingSnapshot();
   });
 
   it('fails for matching schema when using .not', () => {

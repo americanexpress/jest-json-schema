@@ -1,5 +1,9 @@
 # jest-json-schema
 
+[![npm version](https://badge.fury.io/js/jest-json-schema.svg)](https://badge.fury.io/js/jest-json-schema)
+[![Build Status](https://travis-ci.org/americanexpress/jest-json-schema.svg?branch=master)](https://travis-ci.org/americanexpress/jest-json-schema)
+[![Mentioned in Awesome Jest](https://awesome.re/mentioned-badge.svg)](https://github.com/jest-community/awesome-jest)
+
 > JSON schema matcher for [jest](https://www.npmjs.com/package/jest)
 
 ## Matchers included
