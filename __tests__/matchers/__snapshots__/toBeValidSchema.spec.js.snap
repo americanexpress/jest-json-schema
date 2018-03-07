@@ -10,7 +10,7 @@ exports[`toBeValidSchema fails schemas of invalid types 1`] = `
 "expect(schema).toBeValidSchema()
 
 schema
-  should be object,boolean
+  should be object
 "
 `;
 
