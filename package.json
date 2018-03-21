@@ -22,7 +22,7 @@
     "matcher",
     "test"
   ],
-  "author": "Jimmy King <jimmy.king@aexp.com> (https://github.com/jking90)",
+  "author": "Jimmy King <jimmy.king@aexp.com> (https://github.com/10xLaCroixDrinker)",
   "license": "Apache-2.0",
   "dependencies": {
     "ajv": "^6.2.1",
