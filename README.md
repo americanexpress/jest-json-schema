@@ -26,8 +26,8 @@ it('validates my json', () => {
 
 ## Installation
 
-```
-npm install --save-dev jest-json-schema
+```bash
+$ npm install --save-dev jest-json-schema
 ```
 
 ## Usage
