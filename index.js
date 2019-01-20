@@ -15,12 +15,7 @@
 const toMatchSchema = require('./matchers/toMatchSchema');
 const toBeValidSchema = require('./matchers/toBeValidSchema');
 
-function matchersWithOptions(userOptions = {}) {
-  return {
-    toMatchSchema: (received, schema) => toMatchSchema(received, schema, userOptions),
-    toBeValidSchema: received => toBeValidSchema(received, userOptions),
-  };
-}
-
-module.exports.matchers = matchersWithOptions();
-module.exports.matchersWithOptions = matchersWithOptions;
+module.exports.matchers = {
+  toMatchSchema,
+  toBeValidSchema,
+};

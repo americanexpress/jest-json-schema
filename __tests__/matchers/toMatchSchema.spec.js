@@ -14,17 +14,11 @@
 
 const chalk = require('chalk');
 const toMatchSchemaUnderTest = require('../../index').matchers.toMatchSchema;
-const toMatchSchemaWithFormatsUnderTest = require('../../index').matchersWithOptions({
-  formats: {
-    bcp47: /^[a-z]{2}-[A-Z]{2}$/,
-  },
-}).toMatchSchema;
 
 chalk.enabled = false;
 
 expect.extend({
   toMatchSchemaUnderTest,
-  toMatchSchemaWithFormatsUnderTest,
 });
 
 describe('toMatchSchema', () => {
@@ -104,6 +98,8 @@ describe('toMatchSchema', () => {
 
   describe('custom formats', () => {
     describe('bcp47', () => {
+      const ajvOptions = { formats: { bcp47: /^[a-z]{2}-[A-Z]{2}$/ } };
+
       beforeEach(() => {
         schema = {
           properties: {
@@ -118,7 +114,7 @@ describe('toMatchSchema', () => {
         'xx-XX',
       ].forEach((locale) => {
         it(`it matches ${locale}`, () => {
-          expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema);
+          expect({ locale }).toMatchSchemaUnderTest(schema, ajvOptions);
         });
       });
 
@@ -130,7 +126,7 @@ describe('toMatchSchema', () => {
         '123',
       ].forEach((locale) => {
         it(`it does not match ${locale}`, () => {
-          expect(() => expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema))
+          expect(() => expect({ locale }).toMatchSchemaUnderTest(schema, ajvOptions))
             .toThrowErrorMatchingSnapshot();
         });
       });
