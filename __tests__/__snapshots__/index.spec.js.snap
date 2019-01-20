@@ -2,10 +2,6 @@
 
 exports[`index should export all the matchers from the matchers directory 1`] = `
 Object {
-  "matchers": Object {
-    "toBeValidSchema": [Function],
-    "toMatchSchema": [Function],
-  },
   "toBeValidSchema": [Function],
   "toMatchSchema": [Function],
 }

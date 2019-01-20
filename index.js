@@ -18,8 +18,4 @@ const toBeValidSchema = require('./matchers/toBeValidSchema');
 module.exports = {
   toMatchSchema,
   toBeValidSchema,
-  matchers: {
-    toMatchSchema,
-    toBeValidSchema,
-  },
 };
