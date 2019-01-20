@@ -15,7 +15,14 @@
 const toMatchSchema = require('./matchers/toMatchSchema');
 const toBeValidSchema = require('./matchers/toBeValidSchema');
 
-module.exports = {
+const matchers = {
   toMatchSchema,
   toBeValidSchema,
 };
+
+const jestExpect = global.expect;
+if (jestExpect !== undefined) {
+  jestExpect.extend(matchers);
+}
+
+module.exports = matchers;

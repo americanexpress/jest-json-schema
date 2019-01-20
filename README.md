@@ -51,8 +51,7 @@ $ npm install --save-dev jest-json-schema
 In any test file:
 
 ```js
-import matchers from 'jest-json-schema';
-expect.extend(matchers);
+import 'jest-json-schema';
 ```
 
 Or if you want it available for all test files then set it up the same way in a
