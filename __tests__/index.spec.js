@@ -12,10 +12,17 @@
  * the License.
  */
 
-const matchers = require('../index.js');
-
 describe('index', () => {
   it('should export all the matchers from the matchers directory', () => {
-    expect(matchers).toMatchSnapshot();
+    expect(require('../index.js')).toMatchSnapshot();
+  });
+
+  it('should extend jest expect if it is available on the global object', () => {
+    const extend = jest.spyOn(global.expect, 'extend');
+
+    jest.resetModules();
+    const matchers = require('../index.js');
+
+    expect(extend).toHaveBeenCalledWith(matchers);
   });
 });
