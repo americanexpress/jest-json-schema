@@ -13,7 +13,7 @@
  */
 
 const chalk = require('chalk');
-const toBeValidSchemaUnderTest = require('../../index').matchers.toBeValidSchema;
+const toBeValidSchemaUnderTest = require('../../index').toBeValidSchema;
 
 chalk.enabled = false;
 
