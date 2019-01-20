@@ -17,7 +17,7 @@ const chalk = require('chalk');
 const { matcherHint } = require('jest-matcher-utils');
 
 function buildToMatchSchema(ajvOptions) {
-  return function toMatchSchema(received, schema, description) {
+  return function toMatchSchema(received, schema) {
     const ajv = new Ajv(ajvOptions);
     const validate = ajv.compile(schema);
     const pass = validate(received);
@@ -25,7 +25,7 @@ function buildToMatchSchema(ajvOptions) {
     const message = pass
       ? () => `${matcherHint('.not.toMatchSchema', undefined, 'schema')}\n\nExpected value not to match schema`
       : () => {
-        let messageToPrint = `${description || 'received'}\n`;
+        let messageToPrint = 'received\n';
         validate.errors.forEach((error) => {
           let line = error.message;
 

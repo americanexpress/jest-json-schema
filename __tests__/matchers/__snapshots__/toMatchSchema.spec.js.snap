@@ -85,11 +85,3 @@ received
   .hello should match pattern \\"[a-z]+\\"
 "
 `;
-
-exports[`toMatchSchema includes the description in the error when provided 1`] = `
-"expect(received).toMatchSchema(schema)
-
-en-US language pack
-  .hello should be string
-"
-`;

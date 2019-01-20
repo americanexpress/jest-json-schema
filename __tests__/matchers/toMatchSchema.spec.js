@@ -72,12 +72,6 @@ describe('toMatchSchema', () => {
       .toThrowErrorMatchingSnapshot();
   });
 
-  it('includes the description in the error when provided', () => {
-    const testObj = { hello: 1 };
-    expect(() => expect(testObj).toMatchSchemaUnderTest(schema, 'en-US language pack'))
-      .toThrowErrorMatchingSnapshot();
-  });
-
   it('fails for matching schema when using .not', () => {
     const testObj = { hello: 'world' };
     expect(() => expect(testObj).not.toMatchSchemaUnderTest(schema))
