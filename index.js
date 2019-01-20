@@ -12,20 +12,13 @@
  * the License.
  */
 
-const merge = require('lodash/merge');
-const buildToMatchSchema = require('./matchers/toMatchSchema');
-const buildToBeValidSchema = require('./matchers/toBeValidSchema');
+const toMatchSchema = require('./matchers/toMatchSchema');
+const toBeValidSchema = require('./matchers/toBeValidSchema');
 
 function matchersWithOptions(userOptions = {}) {
-  const defaultOptions = {
-    allErrors: true,
-  };
-
-  const options = merge(defaultOptions, userOptions);
-
   return {
-    toMatchSchema: buildToMatchSchema(options),
-    toBeValidSchema: buildToBeValidSchema(options),
+    toMatchSchema: (received, schema) => toMatchSchema(received, schema, userOptions),
+    toBeValidSchema: received => toBeValidSchema(received, userOptions),
   };
 }
 
