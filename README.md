@@ -8,7 +8,7 @@
 
 ## Matchers included
 
-### `toMatchSchema(schema)`
+### `toMatchSchema(schema, [ajvOptions])`
 
 Validates that an object matches the given [JSON schema](http://json-schema.org/)
 
@@ -24,6 +24,22 @@ it('validates my json', () => {
 });
 ```
 
+### `toBeValidSchema([ajvOptions])`
+
+Validates that a schema is valid
+
+```js
+it('validates my schema', () => {
+  const schema = {
+    properties: {
+      hello: { type: 'string' },
+    },
+    required: ['hello'],
+  };
+  expect(schema).toBeValidSchema();
+});
+```
+
 ## Installation
 
 ```bash
@@ -35,25 +51,35 @@ $ npm install --save-dev jest-json-schema
 In any test file:
 
 ```js
-import { matchers } from 'jest-json-schema';
+import matchers from 'jest-json-schema';
 expect.extend(matchers);
 ```
 
 Or if you want it available for all test files then set it up the same way in a
 [test framework script file](http://facebook.github.io/jest/docs/configuration.html#setuptestframeworkscriptfile-string)
 
-You can pass [Ajv options](http://epoberezkin.github.io/ajv/#options) using
-`matchersWithOptions` and passing it your options object. The only option passed
-by default is `allErrors: true`.
+You can pass [Ajv options](http://epoberezkin.github.io/ajv/#options) as a
+second parameter to any of the matchers. The only option passed by default is
+`allErrors: true`.
 
 ```js
-import { matchersWithOptions } from 'jest-json-schema';
+const ajvOptions = {
+  formats: {
+    bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+  },
+};
 
-const formats = {
-  bcp47: /^[a-z]{2}-[A-Z]{2}$/,
-}
+const schema = {
+  type: 'object',
+  properties: {
+    lang: {
+      type: 'string',
+      format: 'bcp47',
+    },
+  },
+};
 
-expect.extend(matchersWithOptions({ formats }));
+expect({ lang: 'en-US' }).toMatchSchema(schema, ajvOptions);
 ```
 
 ## Contributing
