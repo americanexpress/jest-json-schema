@@ -13,8 +13,8 @@
  */
 
 const chalk = require('chalk');
-const toMatchSchemaUnderTest = require('../../index').matchers.toMatchSchema;
-const toMatchSchemaWithFormatsUnderTest = require('../../index').matchersWithFormats({
+const toMatchSchemaUnderTest = require('../..').matchers.toMatchSchema;
+const toMatchSchemaWithFormatsUnderTest = require('../..').matchersWithFormats({
   bcp47: /^[a-z]{2}-[A-Z]{2}$/,
 }).toMatchSchema;
 

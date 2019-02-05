@@ -12,7 +12,7 @@
  * the License.
  */
 
-const { matchers, matchersWithFormats, matchersWithOptions } = require('../index.js');
+const { matchers, matchersWithFormats, matchersWithOptions } = require('..');
 
 describe('index', () => {
   it('should export all the matchers from the matchers directory', () => {

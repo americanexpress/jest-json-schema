@@ -33,8 +33,8 @@ function matchersWithOptions(userOptions = {}) {
 module.exports.matchers = matchersWithOptions();
 module.exports.matchersWithFormats = (formats = {}) => {
   console.warn(chalk.yellow(
-    'matchersWithFormats has been deprecated and will be removed in the next major version.\n' +
-    'Please use matchersWithOptions instead.'
+    'matchersWithFormats has been deprecated and will be removed in the next major version.\n'
+    + 'Please use matchersWithOptions instead.'
   ));
   return matchersWithOptions({ unknownFormats: true, formats });
 };

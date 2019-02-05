@@ -33,7 +33,7 @@
   "devDependencies": {
     "amex-jest-preset": "^5.0.0",
     "eslint": "^5.2.0",
-    "eslint-config-amex": "^7.1.1",
+    "eslint-config-amex": "^9.0.0",
     "jest": "^24.0.0"
   }
 }
