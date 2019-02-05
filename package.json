@@ -35,5 +35,8 @@
     "eslint": "^5.2.0",
     "eslint-config-amex": "^9.0.0",
     "jest": "^24.0.0"
+  },
+  "engines": {
+    "node": ">= 6"
   }
 }
