@@ -12,7 +12,6 @@
  * the License.
  */
 
-const merge = require('lodash/merge');
 const chalk = require('chalk');
 const buildToMatchSchema = require('./matchers/toMatchSchema');
 const buildToBeValidSchema = require('./matchers/toBeValidSchema');
@@ -22,7 +21,7 @@ function matchersWithOptions(userOptions = {}) {
     allErrors: true,
   };
 
-  const options = merge(defaultOptions, userOptions);
+  const options = Object.assign(defaultOptions, userOptions);
 
   return {
     toMatchSchema: buildToMatchSchema(options),
