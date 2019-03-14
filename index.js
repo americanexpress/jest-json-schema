@@ -38,3 +38,5 @@ module.exports.matchersWithFormats = (formats = {}) => {
   return matchersWithOptions({ unknownFormats: true, formats });
 };
 module.exports.matchersWithOptions = matchersWithOptions;
+
+expect.extend(module.exports.matchers);
