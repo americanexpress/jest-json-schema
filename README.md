@@ -6,6 +6,9 @@
 
 > JSON schema matcher for [jest](https://www.npmjs.com/package/jest)
 
+> Want to get paid for your contributions to `jest-json-schema`?
+> Send your resume to oneamex.careers@aexp.com
+
 ## Matchers included
 
 ### `toMatchSchema(schema)`
