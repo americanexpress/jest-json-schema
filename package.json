@@ -30,6 +30,7 @@
     "jest-matcher-utils": "^24.0.0"
   },
   "devDependencies": {
+    "ajv-keywords": "^3.4.1",
     "amex-jest-preset": "^5.0.0",
     "eslint": "^5.2.0",
     "eslint-config-amex": "^9.0.0",

@@ -12,17 +12,27 @@
  * the License.
  */
 
+const ajvKeywords = require('ajv-keywords');
 const chalk = require('chalk');
 const toMatchSchemaUnderTest = require('../..').matchers.toMatchSchema;
-const toMatchSchemaWithFormatsUnderTest = require('../..').matchersWithFormats({
-  bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+const toMatchSchemaWithOptionsUnderTest = require('../..').matchersWithOptions({
+  formats: {
+    bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+  },
+}, (ajv) => {
+  ajvKeywords(ajv, ['typeof', 'instanceof']);
+
+  ajv.addKeyword('test', {
+    validate: (schema, data) => !!schema.test && data === 'test',
+    errors: true,
+  });
 }).toMatchSchema;
 
 chalk.enabled = false;
 
 expect.extend({
   toMatchSchemaUnderTest,
-  toMatchSchemaWithFormatsUnderTest,
+  toMatchSchemaWithOptionsUnderTest,
 });
 
 describe('toMatchSchema', () => {
@@ -122,7 +132,7 @@ describe('toMatchSchema', () => {
         'xx-XX',
       ].forEach((locale) => {
         it(`it matches ${locale}`, () => {
-          expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema);
+          expect({ locale }).toMatchSchemaWithOptionsUnderTest(schema);
         });
       });
 
@@ -134,9 +144,37 @@ describe('toMatchSchema', () => {
         '123',
       ].forEach((locale) => {
         it(`it does not match ${locale}`, () => {
-          expect(() => expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema))
+          expect(() => expect({ locale }).toMatchSchemaWithOptionsUnderTest(schema))
             .toThrowErrorMatchingSnapshot();
         });
+      });
+    });
+  });
+
+  describe('custom keywords', () => {
+    it('typeof', () => {
+      expect({}).toMatchSchemaUnderTest({
+        typeof: 'object',
+      });
+
+      expect('test').toMatchSchemaUnderTest({
+        typeof: 'string',
+      });
+
+      expect(123).toMatchSchemaUnderTest({
+        typeof: 'number',
+      });
+    });
+
+    it('instanceof', () => {
+      expect([]).toMatchSchemaUnderTest({
+        instanceof: 'array',
+      });
+    });
+
+    it('test', () => {
+      expect('test').toMatchSchemaUnderTest({
+        test: true,
       });
     });
   });

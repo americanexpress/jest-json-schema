@@ -32,11 +32,23 @@ describe('index', () => {
       matchersWithFormats();
       expect(consoleWarnSpy).toHaveBeenCalled();
     });
+
+    it('should fire initAjvInitialized callback', () => {
+      const callback = jest.fn();
+      matchersWithFormats({}, callback);
+      expect(callback).toHaveBeenCalled();
+    });
   });
 
   describe('matchersWithOptions', () => {
     it('should return all the matchers', () => {
       expect(matchersWithOptions()).toMatchSnapshot();
+    });
+
+    it('should fire initAjvInitialized callback', () => {
+      const callback = jest.fn();
+      matchersWithOptions({}, callback);
+      expect(callback).toHaveBeenCalled();
     });
   });
 });

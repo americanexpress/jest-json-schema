@@ -16,7 +16,7 @@ const chalk = require('chalk');
 const buildToMatchSchema = require('./matchers/toMatchSchema');
 const buildToBeValidSchema = require('./matchers/toBeValidSchema');
 
-function matchersWithOptions(userOptions = {}) {
+function matchersWithOptions(userOptions = {}, afterAjvInitialized) {
   const defaultOptions = {
     allErrors: true,
   };
@@ -24,17 +24,18 @@ function matchersWithOptions(userOptions = {}) {
   const options = Object.assign(defaultOptions, userOptions);
 
   return {
-    toMatchSchema: buildToMatchSchema(options),
-    toBeValidSchema: buildToBeValidSchema(options),
+    toMatchSchema: buildToMatchSchema(options, afterAjvInitialized),
+    toBeValidSchema: buildToBeValidSchema(options, afterAjvInitialized),
   };
 }
 
 module.exports.matchers = matchersWithOptions();
-module.exports.matchersWithFormats = (formats = {}) => {
+module.exports.matchersWithFormats = (formats = {}, afterAjvInitialized) => {
+  // eslint-disable-next-line no-console
   console.warn(chalk.yellow(
     'matchersWithFormats has been deprecated and will be removed in the next major version.\n'
     + 'Please use matchersWithOptions instead.'
   ));
-  return matchersWithOptions({ unknownFormats: true, formats });
+  return matchersWithOptions({ unknownFormats: true, formats }, afterAjvInitialized);
 };
 module.exports.matchersWithOptions = matchersWithOptions;

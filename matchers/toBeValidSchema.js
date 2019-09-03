@@ -16,10 +16,14 @@ const Ajv = require('ajv');
 const chalk = require('chalk');
 const { matcherHint } = require('jest-matcher-utils');
 
-function buildToBeValidSchema(ajvOptions) {
-  return function toBeValidSchema(received) {
-    const ajv = new Ajv(ajvOptions);
+function buildToBeValidSchema(ajvOptions, afterAjvInitialized) {
+  const ajv = new Ajv(ajvOptions);
 
+  if (afterAjvInitialized) {
+    afterAjvInitialized(ajv);
+  }
+
+  return function toBeValidSchema(received) {
     const pass = ajv.validateSchema(received);
 
     const message = pass
