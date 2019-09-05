@@ -81,7 +81,7 @@ expect.extend(matchersWithOptions({ formats }, (ajv) => {
 
 Ajv supports a verbose option flag which enables more information about individual
 errors. This extra information can mean that we can output to Jest more meaningful
-information about specific errors that can help the development process.
+errors that can help the development process.
 
 ### Example using multiple schema files
 
