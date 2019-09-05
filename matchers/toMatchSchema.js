@@ -1,4 +1,3 @@
-/* eslint-disable no-console, no-unused-vars, prefer-const, max-len */
 /*
  * Copyright (c) 2017 American Express Travel Related Services Company, Inc.
  *
@@ -86,8 +85,7 @@ function buildToMatchSchema(ajv) {
         let messageToPrint = `${matcherHint('.not.toMatchSchema', undefined, 'schema')}\n\nExpected value not to match schema\n\n`;
 
         if (verbose) {
-          messageToPrint += chalk.red('received\n');
-          messageToPrint += chalk.red(`${formatForPrint(received, false)}\n`);
+          messageToPrint += chalk.red(`received\n${formatForPrint(received)}\n`);
         }
 
         return messageToPrint;

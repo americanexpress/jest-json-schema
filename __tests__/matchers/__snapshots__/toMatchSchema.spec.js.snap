@@ -116,13 +116,71 @@ en-US language pack
 "
 `;
 
-exports[`toMatchSchema output verbose errors should output an error with only the received input data printed 1`] = `
+exports[`toMatchSchema output verbose errors should display schema $id in the schema path 1`] = `
+"expect(received).toMatchSchema(schema)
+
+received
+  should be string
+"
+`;
+
+exports[`toMatchSchema output verbose errors should output an error with only the received input printed 1`] = `
 "expect(received).not.toMatchSchema(schema)
 
 Expected value not to match schema
 
 received
-{\\"testType\\":\\"this is valid but expect().not.toMatchSchema has been used\\",\\"testEnum\\":1,\\"testConst\\":true}
+<null>
+"
+`;
+
+exports[`toMatchSchema output verbose errors should output an error with only the received input printed 2`] = `
+"expect(received).not.toMatchSchema(schema)
+
+Expected value not to match schema
+
+received
+<boolean> true
+"
+`;
+
+exports[`toMatchSchema output verbose errors should output an error with only the received input printed 3`] = `
+"expect(received).not.toMatchSchema(schema)
+
+Expected value not to match schema
+
+received
+<number> 1
+"
+`;
+
+exports[`toMatchSchema output verbose errors should output an error with only the received input printed 4`] = `
+"expect(received).not.toMatchSchema(schema)
+
+Expected value not to match schema
+
+received
+<string> this is valid but expect().not.toMatchSchema has been used
+"
+`;
+
+exports[`toMatchSchema output verbose errors should output an error with only the received input printed 5`] = `
+"expect(received).not.toMatchSchema(schema)
+
+Expected value not to match schema
+
+received
+<object> {}
+"
+`;
+
+exports[`toMatchSchema output verbose errors should output an error with only the received input printed 6`] = `
+"expect(received).not.toMatchSchema(schema)
+
+Expected value not to match schema
+
+received
+<array> [\\"this is valid but expect().not.toMatchSchema has been used\\"]
 "
 `;
 
@@ -131,132 +189,132 @@ exports[`toMatchSchema output verbose errors should output error with details pr
 
 received
   should NOT have more than 1 properties
-    Path:     testSchema#/allOf/0/maxProperties
+    Path:     #/allOf/0/maxProperties
   should NOT have fewer than 999 properties
-    Path:     testSchema#/allOf/0/minProperties
+    Path:     #/allOf/0/minProperties
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testType' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testNotEmpty' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testEnum' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testConst' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testFormat' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testPattern' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testItems' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testNumber' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testIf' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testElse' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   should match pattern \\"^false\\"
-    Path:     testSchema#/allOf/0/propertyNames/pattern
+    Path:     #/allOf/0/propertyNames/pattern
   property name 'testThen' is invalid
     Expected: {\\"pattern\\":\\"^false\\"}
-    Path:     testSchema#/allOf/0/propertyNames
+    Path:     #/allOf/0/propertyNames
   .testType should be null
     Received: <boolean> false
-    Path:     testSchema#/allOf/0/properties/testType/type
+    Path:     #/allOf/0/properties/testType/type
   .testNotEmpty should NOT be shorter than 1 characters
     Received: <empty string>
-    Path:     testSchema#/allOf/0/properties/testNotEmpty/minLength
+    Path:     #/allOf/0/properties/testNotEmpty/minLength
   .testEnum should be equal to one of the allowed values
     Expected: [1,2]
     Received: <boolean> false
-    Path:     testSchema#/allOf/0/properties/testEnum/enum
+    Path:     #/allOf/0/properties/testEnum/enum
   .testConst should be equal to constant
     Expected: <boolean> true
     Received: <boolean> false
-    Path:     testSchema#/allOf/0/properties/testConst/const
+    Path:     #/allOf/0/properties/testConst/const
   .testFormat should match format \\"email\\"
     Received: <string> test
-    Path:     testSchema#/allOf/0/properties/testFormat/format
+    Path:     #/allOf/0/properties/testFormat/format
   .testPattern should match pattern \\"[0-9]+\\"
     Received: <string> test
-    Path:     testSchema#/allOf/0/properties/testPattern/pattern
+    Path:     #/allOf/0/properties/testPattern/pattern
   .testItems should NOT have more than 1 items
     Received: <array> [false,1]
-    Path:     testSchema#/allOf/0/properties/testItems/maxItems
+    Path:     #/allOf/0/properties/testItems/maxItems
   .testItems should NOT have fewer than 5 items
     Received: <array> [false,1]
-    Path:     testSchema#/allOf/0/properties/testItems/minItems
+    Path:     #/allOf/0/properties/testItems/minItems
   .testItems[0] should be equal to constant
     Expected: <boolean> true
     Received: <boolean> false
-    Path:     testSchema#/allOf/0/properties/testItems/items/const
+    Path:     #/allOf/0/properties/testItems/items/const
   .testItems[1] should be equal to constant
     Expected: <boolean> true
     Received: <number> 1
-    Path:     testSchema#/allOf/0/properties/testItems/items/const
+    Path:     #/allOf/0/properties/testItems/items/const
   .testItems[0] should be equal to constant
     Expected: <boolean> true
     Received: <boolean> false
-    Path:     testSchema#/allOf/0/properties/testItems/contains/const
+    Path:     #/allOf/0/properties/testItems/contains/const
   .testItems[1] should be equal to constant
     Expected: <boolean> true
     Received: <number> 1
-    Path:     testSchema#/allOf/0/properties/testItems/contains/const
+    Path:     #/allOf/0/properties/testItems/contains/const
   .testItems should contain a valid item
     Expected: {\\"const\\":true}
     Received: <array> [false,1]
-    Path:     testSchema#/allOf/0/properties/testItems/contains
+    Path:     #/allOf/0/properties/testItems/contains
   .testNumber should be <= 0
     Received: <number> 1
-    Path:     testSchema#/allOf/0/properties/testNumber/maximum
+    Path:     #/allOf/0/properties/testNumber/maximum
   .testNumber should be > 999
     Received: <number> 1
-    Path:     testSchema#/allOf/0/properties/testNumber/exclusiveMinimum
+    Path:     #/allOf/0/properties/testNumber/exclusiveMinimum
   .testNumber should be multiple of 5
     Received: <number> 1
-    Path:     testSchema#/allOf/0/properties/testNumber/multipleOf
+    Path:     #/allOf/0/properties/testNumber/multipleOf
   should have required property 'testRequired'
-    Path:     testSchema#/allOf/0/required
+    Path:     #/allOf/0/required
   .testThen should be equal to constant
     Expected: <boolean> true
     Received: <null>
-    Path:     testSchema#/allOf/1/then/properties/testThen/const
+    Path:     #/allOf/1/then/properties/testThen/const
   should match \\"then\\" schema
     Expected: {\\"type\\":\\"object\\",\\"properties\\":{\\"testThen\\":{\\"const\\":true}}}
     Received: {\\"testType\\":false,\\"testNotEmpty\\":\\"\\",\\"testEnum\\":false,\\"testConst\\":false,\\"testFormat\\":\\"test\\",\\"testPattern\\":\\"test\\",\\"testItems\\":[false,1],\\"testNumber\\":1,\\"testIf\\":true,\\"testThen\\":null}
-    Path:     testSchema#/allOf/1/if
+    Path:     #/allOf/1/if
   should NOT be valid
     Expected: {\\"type\\":\\"object\\"}
     Received: {\\"testType\\":false,\\"testNotEmpty\\":\\"\\",\\"testEnum\\":false,\\"testConst\\":false,\\"testFormat\\":\\"test\\",\\"testPattern\\":\\"test\\",\\"testItems\\":[false,1],\\"testNumber\\":1,\\"testIf\\":true,\\"testThen\\":null}
-    Path:     testSchema#/allOf/2/not
+    Path:     #/allOf/2/not
 "
 `;

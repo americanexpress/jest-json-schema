@@ -175,30 +175,57 @@ describe('toMatchSchema', () => {
   });
 
   describe('output verbose errors', () => {
-    beforeEach(() => {
-      schema = {
-        type: 'object',
-        properties: {
-          testType: {
-            type: 'string',
-            minLength: 1,
-          },
-          testEnum: {
-            enum: [1, 2],
-          },
-          testConst: {
-            const: true,
-          },
-        },
-      };
+    it('should output an error with only the received input printed', () => {
+      // Null
+      expect(() => expect(null)
+        .not.toMatchSchemaWithOptionsUnderTest({
+          type: 'null',
+        }))
+        .toThrowErrorMatchingSnapshot();
+
+      // Boolean
+      expect(() => expect(true)
+        .not.toMatchSchemaWithOptionsUnderTest({
+          type: 'boolean',
+        }))
+        .toThrowErrorMatchingSnapshot();
+
+      // Number
+      expect(() => expect(1)
+        .not.toMatchSchemaWithOptionsUnderTest({
+          type: 'number',
+        }))
+        .toThrowErrorMatchingSnapshot();
+
+      // String
+      expect(() => expect('this is valid but expect().not.toMatchSchema has been used')
+        .not.toMatchSchemaWithOptionsUnderTest({
+          type: 'string',
+        }))
+        .toThrowErrorMatchingSnapshot();
+
+      // Object
+      expect(() => expect({})
+        .not.toMatchSchemaWithOptionsUnderTest({
+          type: 'object',
+        }))
+        .toThrowErrorMatchingSnapshot();
+
+      // Array
+      expect(() => expect(['this is valid but expect().not.toMatchSchema has been used'])
+        .not.toMatchSchemaWithOptionsUnderTest({
+          minItems: 1,
+        }))
+        .toThrowErrorMatchingSnapshot();
     });
 
-    it('should output an error with only the received input data printed', () => {
-      expect(() => expect({
-        testType: 'this is valid but expect().not.toMatchSchema has been used',
-        testEnum: 1,
-        testConst: true,
-      }).not.toMatchSchemaWithOptionsUnderTest(schema))
+    it('should display schema $id in the schema path', () => {
+      expect(() => expect({}).toMatchSchema({
+        $id: 'testSchema',
+        allOf: [{
+          type: 'string',
+        }],
+      }))
         .toThrowErrorMatchingSnapshot();
     });
 
@@ -216,7 +243,6 @@ describe('toMatchSchema', () => {
         testElse: undefined,
         testThen: null,
       }).toMatchSchemaWithOptionsUnderTest({
-        $id: 'testSchema',
         $schema: 'http://json-schema.org/draft-07/schema#',
         allOf: [
           {
