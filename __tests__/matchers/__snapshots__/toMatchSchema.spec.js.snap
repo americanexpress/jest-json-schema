@@ -40,6 +40,22 @@ received
 "
 `;
 
+exports[`toMatchSchema custom keywords instanceof 1`] = `
+"expect(received).toMatchSchema(schema)
+
+received
+  should pass \\"instanceof\\" keyword validation
+"
+`;
+
+exports[`toMatchSchema custom keywords typeof 1`] = `
+"expect(received).toMatchSchema(schema)
+
+received
+  should pass \\"typeof\\" keyword validation
+"
+`;
+
 exports[`toMatchSchema does not crash on circular references 1`] = `
 "expect(received).toMatchSchema(schema)
 

@@ -12,17 +12,10 @@
  * the License.
  */
 
-const Ajv = require('ajv');
 const chalk = require('chalk');
 const { matcherHint } = require('jest-matcher-utils');
 
-function buildToBeValidSchema(ajvOptions, afterAjvInitialized) {
-  const ajv = new Ajv(ajvOptions);
-
-  if (afterAjvInitialized) {
-    afterAjvInitialized(ajv);
-  }
-
+function buildToBeValidSchema(ajv) {
   return function toBeValidSchema(received) {
     const pass = ajv.validateSchema(received);
 

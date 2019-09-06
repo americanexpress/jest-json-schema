@@ -59,9 +59,8 @@ const formats = {
 expect.extend(matchersWithOptions({ formats }));
 ```
 
-Additionally you can also use a callback to further configure the Ajv
-instance, which is run after the `new Ajv(ajvOptions)` is executed
-and passes the Ajv instance as a single parameter:
+Additionally you can also use a callback to further configure and extend
+the Ajv instance used by the matchers:
 
 ```js
 import ajvKeywords from 'ajv-keywords';
@@ -71,7 +70,9 @@ const formats = {
   bcp47: /^[a-z]{2}-[A-Z]{2}$/,
 }
 
-expect.extend(matchersWithOptions({ formats }, ajv => {
+expect.extend(matchersWithOptions({ formats }, (ajv) => {
+  // This uses the `ajv-keywords` library to add pre-made
+  // custom keywords to the Ajv instance.
   ajvKeywords(ajv, ['typeof', 'instanceof']);
 }));
 ```

@@ -21,11 +21,6 @@ const toMatchSchemaWithOptionsUnderTest = require('../..').matchersWithOptions({
   },
 }, (ajv) => {
   ajvKeywords(ajv, ['typeof', 'instanceof']);
-
-  ajv.addKeyword('test', {
-    validate: (schema, data) => !!schema.test && data === 'test',
-    errors: true,
-  });
 }).toMatchSchema;
 
 chalk.enabled = false;
@@ -153,29 +148,27 @@ describe('toMatchSchema', () => {
 
   describe('custom keywords', () => {
     it('typeof', () => {
-      expect({}).toMatchSchemaUnderTest({
-        typeof: 'object',
-      });
-
-      expect('test').toMatchSchemaUnderTest({
+      expect('test').toMatchSchemaWithOptionsUnderTest({
         typeof: 'string',
       });
 
-      expect(123).toMatchSchemaUnderTest({
-        typeof: 'number',
-      });
+      // Check error is thrown by custom keyword
+      expect(() => expect(false).toMatchSchemaWithOptionsUnderTest({
+        typeof: 'string',
+      }))
+        .toThrowErrorMatchingSnapshot();
     });
 
     it('instanceof', () => {
-      expect([]).toMatchSchemaUnderTest({
-        instanceof: 'array',
+      expect([]).toMatchSchemaWithOptionsUnderTest({
+        instanceof: 'Array',
       });
-    });
 
-    it('test', () => {
-      expect('test').toMatchSchemaUnderTest({
-        test: true,
-      });
+      // Check error is thrown by custom keyword
+      expect(() => expect(false).toMatchSchemaWithOptionsUnderTest({
+        instanceof: 'Array',
+      }))
+        .toThrowErrorMatchingSnapshot();
     });
   });
 });

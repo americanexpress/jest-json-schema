@@ -12,30 +12,35 @@
  * the License.
  */
 
+const Ajv = require('ajv');
 const chalk = require('chalk');
 const buildToMatchSchema = require('./matchers/toMatchSchema');
 const buildToBeValidSchema = require('./matchers/toBeValidSchema');
 
-function matchersWithOptions(userOptions = {}, afterAjvInitialized) {
+function matchersWithOptions(userOptions = {}, extendAjv) {
   const defaultOptions = {
     allErrors: true,
   };
 
   const options = Object.assign(defaultOptions, userOptions);
+  const ajv = new Ajv(options);
+  if (typeof extendAjv === 'function') {
+    extendAjv(ajv);
+  }
 
   return {
-    toMatchSchema: buildToMatchSchema(options, afterAjvInitialized),
-    toBeValidSchema: buildToBeValidSchema(options, afterAjvInitialized),
+    toMatchSchema: buildToMatchSchema(ajv),
+    toBeValidSchema: buildToBeValidSchema(ajv),
   };
 }
 
 module.exports.matchers = matchersWithOptions();
-module.exports.matchersWithFormats = (formats = {}, afterAjvInitialized) => {
+module.exports.matchersWithFormats = (formats = {}) => {
   // eslint-disable-next-line no-console
   console.warn(chalk.yellow(
     'matchersWithFormats has been deprecated and will be removed in the next major version.\n'
     + 'Please use matchersWithOptions instead.'
   ));
-  return matchersWithOptions({ unknownFormats: true, formats }, afterAjvInitialized);
+  return matchersWithOptions({ unknownFormats: true, formats });
 };
 module.exports.matchersWithOptions = matchersWithOptions;
