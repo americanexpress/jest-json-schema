@@ -366,7 +366,7 @@ describe('toMatchSchema', () => {
 
     it('ensure verbose readme example is correct', () => {
       const testSchema = {
-        $id: 'testSchema',
+        $id: 'testVerboseReadmeSchema',
         type: 'object',
         properties: {
           name: {
@@ -389,13 +389,13 @@ describe('toMatchSchema', () => {
       }).toThrowErrorMatchingInlineSnapshot(`
 "expect(received).toMatchSchema(schema)
 
-Received:
+received
   .name should be string
     Received: <null>
-    Path: testSchema#/properties/name/type
+    Path:     testVerboseReadmeSchema#/properties/name/type
   .dob should match format \\"date\\"
     Received: <string> 02-29-2000
-    Path: testSchema#/properties/dob/format
+    Path:     testVerboseReadmeSchema#/properties/dob/format
 "
 `);
     });
