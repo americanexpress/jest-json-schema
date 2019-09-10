@@ -1,3 +1,5 @@
+.vscode
+.DS_Store
 test-results
 .jest-cache
 node_modules

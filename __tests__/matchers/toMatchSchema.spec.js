@@ -12,10 +12,14 @@
  * the License.
  */
 
+const ajvKeywords = require('ajv-keywords');
 const chalk = require('chalk');
 const toMatchSchemaUnderTest = require('../..').matchers.toMatchSchema;
 const toMatchSchemaWithFormatsUnderTest = require('../..').matchersWithFormats({
   bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+}).toMatchSchema;
+const toMatchSchemaWithOptionsUnderTest = require('../..').matchersWithOptions({}, (ajv) => {
+  ajvKeywords(ajv, ['typeof', 'instanceof']);
 }).toMatchSchema;
 
 chalk.enabled = false;
@@ -23,6 +27,7 @@ chalk.enabled = false;
 expect.extend({
   toMatchSchemaUnderTest,
   toMatchSchemaWithFormatsUnderTest,
+  toMatchSchemaWithOptionsUnderTest,
 });
 
 describe('toMatchSchema', () => {
@@ -138,6 +143,32 @@ describe('toMatchSchema', () => {
             .toThrowErrorMatchingSnapshot();
         });
       });
+    });
+  });
+
+  describe('custom keywords', () => {
+    it('typeof', () => {
+      expect('test').toMatchSchemaWithOptionsUnderTest({
+        typeof: 'string',
+      });
+
+      // Check error is thrown by custom keyword
+      expect(() => expect(false).toMatchSchemaWithOptionsUnderTest({
+        typeof: 'string',
+      }))
+        .toThrowErrorMatchingSnapshot();
+    });
+
+    it('instanceof', () => {
+      expect([]).toMatchSchemaWithOptionsUnderTest({
+        instanceof: 'Array',
+      });
+
+      // Check error is thrown by custom keyword
+      expect(() => expect(false).toMatchSchemaWithOptionsUnderTest({
+        instanceof: 'Array',
+      }))
+        .toThrowErrorMatchingSnapshot();
     });
   });
 });

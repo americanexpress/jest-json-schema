@@ -25,11 +25,12 @@
   "author": "Jimmy King <jimmy.king@aexp.com> (https://github.com/10xLaCroixDrinker)",
   "license": "Apache-2.0",
   "dependencies": {
-    "ajv": "^6.5.2",
+    "ajv": "^6.10.2",
     "chalk": "^2.4.1",
     "jest-matcher-utils": "^24.0.0"
   },
   "devDependencies": {
+    "ajv-keywords": "^3.4.1",
     "amex-jest-preset": "^5.0.0",
     "eslint": "^5.2.0",
     "eslint-config-amex": "^9.0.0",

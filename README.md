@@ -59,6 +59,24 @@ const formats = {
 expect.extend(matchersWithOptions({ formats }));
 ```
 
+Additionally you can also use a callback to further configure and extend
+the Ajv instance used by the matchers:
+
+```js
+import ajvKeywords from 'ajv-keywords';
+import { matchersWithOptions } from 'jest-json-schema';
+
+const formats = {
+  bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+}
+
+expect.extend(matchersWithOptions({ formats }, (ajv) => {
+  // This uses the `ajv-keywords` library to add pre-made
+  // custom keywords to the Ajv instance.
+  ajvKeywords(ajv, ['typeof', 'instanceof']);
+}));
+```
+
 ## Contributing
 We welcome Your interest in the American Express Open Source Community on Github.
 Any Contributor to any Open Source Project managed by the American Express Open

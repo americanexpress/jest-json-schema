@@ -38,5 +38,11 @@ describe('index', () => {
     it('should return all the matchers', () => {
       expect(matchersWithOptions()).toMatchSnapshot();
     });
+
+    it('should fire extendAjv callback', () => {
+      const callback = jest.fn();
+      matchersWithOptions({}, callback);
+      expect(callback).toHaveBeenCalled();
+    });
   });
 });
