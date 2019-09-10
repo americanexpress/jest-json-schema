@@ -220,10 +220,17 @@ describe('toMatchSchema', () => {
     });
 
     it('should display schema $id in the schema path', () => {
-      expect(() => expect({}).toMatchSchema({
+      expect(() => expect({
+        test: '123',
+      }).toMatchSchemaWithOptionsUnderTest({
         $id: 'testSchema',
         allOf: [{
-          type: 'string',
+          type: 'object',
+          properties: {
+            test: {
+              type: 'number',
+            },
+          },
         }],
       }))
         .toThrowErrorMatchingSnapshot();
@@ -355,6 +362,42 @@ describe('toMatchSchema', () => {
           },
         ],
       })).toThrowErrorMatchingSnapshot();
+    });
+
+    it('ensure verbose readme example is correct', () => {
+      const testSchema = {
+        $id: 'testSchema',
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+          },
+          dob: {
+            type: 'string',
+            format: 'date',
+          },
+        },
+      };
+
+      const invalidData = {
+        name: null,
+        dob: '02-29-2000',
+      };
+
+      expect(() => {
+        expect(invalidData).toMatchSchemaWithOptionsUnderTest(testSchema);
+      }).toThrowErrorMatchingInlineSnapshot(`
+"expect(received).toMatchSchema(schema)
+
+Received:
+  .name should be string
+    Received: <null>
+    Path: testSchema#/properties/name/type
+  .dob should match format \\"date\\"
+    Received: <string> 02-29-2000
+    Path: testSchema#/properties/dob/format
+"
+`);
     });
   });
 });

@@ -81,7 +81,51 @@ expect.extend(matchersWithOptions({ formats }, (ajv) => {
 
 Ajv supports a verbose option flag which enables more information about individual
 errors. This extra information can mean that we can output to Jest more meaningful
-errors that can help the development process.
+errors that can help the development process:
+
+```js
+const { matchersWithOptions } = require('jest-json-schema');
+
+expect.extend(matchersWithOptions({
+  verbose: true
+}));
+
+test('check that property errors are outputted', () => {
+  const schema = {
+    $id: 'testSchema',
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string',
+      },
+      dob: {
+        type: 'string',
+        format: 'date',
+      },
+    },
+  };
+
+  const invalidData = {
+    name: null,
+    dob: '02-29-2000',
+  };
+
+  expect(() => {
+    expect(invalidData).toMatchSchema(schema)
+  }).toThrowErrorMatchingInlineSnapshot(`
+"expect(received).toMatchSchema(schema)
+
+Received:
+  .name should be string
+    Received: <null>
+    Path: testSchema#/properties/name/type
+  .dob should match format \\"date\\"
+    Received: <string> 02-29-2000
+    Path: testSchema#/properties/dob/format
+"
+`);
+});
+```
 
 ### Example using multiple schema files
 

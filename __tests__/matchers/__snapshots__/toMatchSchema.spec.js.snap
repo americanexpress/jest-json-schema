@@ -120,7 +120,9 @@ exports[`toMatchSchema output verbose errors should display schema $id in the sc
 "expect(received).toMatchSchema(schema)
 
 received
-  should be string
+  .test should be number
+    Received: <string> 123
+    Path:     testSchema#/allOf/0/properties/test/type
 "
 `;
 
