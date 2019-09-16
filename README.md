@@ -77,7 +77,152 @@ expect.extend(matchersWithOptions({ formats }, (ajv) => {
 }));
 ```
 
+### Verbose errors
+
+Ajv supports a verbose option flag which enables more information about individual
+errors. This extra information can mean that we can output to Jest more meaningful
+errors that can help the development process:
+
+```js
+const { matchersWithOptions } = require('jest-json-schema');
+
+expect.extend(matchersWithOptions({
+  verbose: true
+}));
+
+test('check that property errors are outputted', () => {
+  const schema = {
+    $id: 'testSchema',
+    type: 'object',
+    properties: {
+      name: {
+        type: 'string',
+      },
+      dob: {
+        type: 'string',
+        format: 'date',
+      },
+    },
+  };
+
+  const invalidData = {
+    name: null,
+    dob: '02-29-2000',
+  };
+
+  expect(() => {
+    expect(invalidData).toMatchSchema(schema)
+  }).toThrowErrorMatchingInlineSnapshot(`
+"expect(received).toMatchSchema(schema)
+
+Received:
+  .name should be string
+    Received: <null>
+    Path: testSchema#/properties/name/type
+  .dob should match format \\"date\\"
+    Received: <string> 02-29-2000
+    Path: testSchema#/properties/dob/format
+"
+`);
+});
+```
+
+### Example using multiple schema files
+
+If you organise your schemas into separate files and use refs which point to the
+various different schemas, it will be important to include those dependent
+schema files when extending Jest's `expect` handler, using the `matchersWithOptions`
+interface:
+
+#### schemaA.json
+
+```json
+{
+  "$id": "schemaA",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Example of a definition schema.",
+  "definitions": {
+    "testA": {
+      "type": "number",
+      "const": 1
+    },
+    "testB": {
+      "type": ["null", "string"]
+    }
+  }
+}
+```
+
+#### schemaB.json
+
+```json
+{
+  "$id": "schemaB",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Example of a schema that references another schema.",
+  "$ref": "schemaA#/definitions/testB"
+}
+```
+
+#### schemaA.test.js
+
+```js
+const { matchersWithOptions } = require('jest-json-schema');
+
+// Local schema files are imported like normal. If you use TypeScript you
+// will need to ensure `--resolveJsonModule` is enabled.
+const schemaA = require('./schemaA.json');
+const schemaB = require('./schemaB.json');
+
+expect.extend(matchersWithOptions({
+  // Loading in a schema which is comprised only of definitions,
+  // which means specific test schemas need to be created.
+  // This is good for testing specific conditions for definition schemas.
+  schemas: [schemaA]
+});
+
+test('schemaA is valid', () => {
+  expect(schemaA).toBeValidSchema();
+});
+
+test('using schemaA to build a test schema to test a specific definition', () => {
+  // This is a test schema which references a definition in one of the
+  // pre-loaded schemas. This can allow us to write tests for specific
+  // definitions.
+  const testSchema = {
+    $ref: 'schemaA#/definitions/testA'
+  };
+
+  expect(testSchema).toBeValidSchema();
+
+  // Valid
+  expect(1).toMatchSchema(testSchema);
+
+  // This example runs through a number of values that we know don't match
+  // the schema, ensuring that any future changes to the schema will require
+  // the test to be updated.
+  ['1', true, false, null, [], {}].forEach(value => {
+     expect(value).not.toMatchSchema(testSchema);
+  });
+});
+
+test('using schemaB which already references a definition in schemaA', () => {
+  expect(schemaB).toBeValidSchema();
+
+  // Valid
+  ['', '1', null].forEach(value => {
+    expect(value).toMatchSchema(schemaB);
+  });
+
+  // Invalid
+  ['1', true, false, [], {}].forEach(value => {
+     expect(value).not.toMatchSchema(schemaB);
+  });
+});
+```
+
 ## Contributing
+
 We welcome Your interest in the American Express Open Source Community on Github.
 Any Contributor to any Open Source Project managed by the American Express Open
 Source Community must accept and sign an Agreement indicating agreement to the
@@ -87,9 +232,11 @@ right, title, and interest, if any, in and to Your Contributions. Please [fill
 out the Agreement](https://cla-assistant.io/americanexpress/).
 
 ## License
+
 Any contributions made under this project will be governed by the [Apache License
  2.0](https://github.com/americanexpress/jest-json-schema/blob/master/LICENSE.txt).
 
 ## Code of Conduct
+
 This project adheres to the [American Express Community Guidelines](https://github.com/americanexpress/jest-json-schema/wiki/Code-of-Conduct).
 By participating, you are expected to honor these guidelines.
