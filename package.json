@@ -6,7 +6,9 @@
   "scripts": {
     "lint": "eslint ./ --ignore-path .gitignore --ext .js",
     "pretest": "npm run lint",
-    "test": "jest"
+    "test": "jest",
+    "test:lockfile": "lockfile-lint -p package-lock.json -t npm -a npm -o https: -c -i",
+    "posttest": "npm run test:lockfile"
   },
   "repository": {
     "type": "git",
@@ -40,7 +42,8 @@
     "eslint": "^5.2.0",
     "eslint-config-amex": "^9.0.0",
     "husky": "^3.1.0",
-    "jest": "^24.0.0"
+    "jest": "^24.0.0",
+    "lockfile-lint": "^3.0.8"
   },
   "engines": {
     "node": ">= 6"
