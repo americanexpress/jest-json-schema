@@ -231,7 +231,7 @@ and to recipients of software distributed by American Express, You reserve all
 right, title, and interest, if any, in and to Your Contributions. Please [fill
 out the Agreement](https://cla-assistant.io/americanexpress/).
 
-Please feel free to open pull requests and see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how to get started contributing..
+Please feel free to open pull requests and see [CONTRIBUTING.md](./CONTRIBUTING.md) to learn how to get started contributing.
 
 ## License
 
