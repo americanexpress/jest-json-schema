@@ -43,8 +43,8 @@
     "eslint": "^5.2.0",
     "eslint-config-amex": "^9.0.0",
     "husky": "^3.1.0",
-    "jest": "^24.0.0",
-    "lockfile-lint": "^3.0.8"
+    "jest": "^25.1.0",
+    "lockfile-lint": "^4.1.0"
   },
   "engines": {
     "node": ">= 6"
