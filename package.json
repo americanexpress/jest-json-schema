@@ -39,7 +39,7 @@
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
     "ajv-keywords": "^3.4.1",
-    "amex-jest-preset": "^5.0.0",
+    "amex-jest-preset": "^6.1.0",
     "eslint": "^5.2.0",
     "eslint-config-amex": "^9.0.0",
     "husky": "^3.1.0",
