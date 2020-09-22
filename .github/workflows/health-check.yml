@@ -29,4 +29,3 @@ jobs:
       run: npm run test
       env:
         NODE_ENV: production
-        GITHUB_TOKEN: ${{ secrets.PA_TOKEN }}
