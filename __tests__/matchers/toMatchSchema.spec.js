@@ -15,8 +15,10 @@
 const ajvKeywords = require('ajv-keywords');
 const chalk = require('chalk');
 const toMatchSchemaUnderTest = require('../..').matchers.toMatchSchema;
-const toMatchSchemaWithFormatsUnderTest = require('../..').matchersWithFormats({
-  bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+const toMatchSchemaWithFormatsUnderTest = require('../..').matchersWithOptions({
+  formats: {
+    bcp47: /^[a-z]{2}-[A-Z]{2}$/,
+  },
 }).toMatchSchema;
 const toMatchSchemaWithOptionsUnderTest = require('../..').matchersWithOptions({
   verbose: true,

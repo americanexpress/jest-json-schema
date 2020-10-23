@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`index matchersWithFormats should return all the matchers 1`] = `
-Object {
-  "toBeValidSchema": [Function],
-  "toMatchSchema": [Function],
-}
-`;
-
 exports[`index matchersWithOptions should return all the matchers 1`] = `
 Object {
   "toBeValidSchema": [Function],
