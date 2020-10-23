@@ -24,7 +24,7 @@ const toMatchSchemaWithOptionsUnderTest = require('../..').matchersWithOptions({
   ajvKeywords(ajv, ['typeof', 'instanceof']);
 }).toMatchSchema;
 
-chalk.enabled = false;
+chalk.level = 0;
 
 expect.extend({
   toMatchSchemaUnderTest,
