@@ -54,7 +54,7 @@
     "semantic-release": "^17.1.2"
   },
   "engines": {
-    "node": ">= 6"
+    "node": "^12.13.0 || ^14.15.0 || >=15.0.0"
   },
   "husky": {
     "hooks": {
