@@ -18,6 +18,6 @@ exports[`toBeValidSchema fails schemas with invalid properties 1`] = `
 "expect(schema).toBeValidSchema()
 
 schema
-  .properties should be object
+  /properties should be object
 "
 `;
