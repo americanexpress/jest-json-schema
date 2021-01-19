@@ -13,7 +13,6 @@
  */
 
 const Ajv = require('ajv');
-const chalk = require('chalk');
 const buildToMatchSchema = require('./matchers/toMatchSchema');
 const buildToBeValidSchema = require('./matchers/toBeValidSchema');
 
@@ -35,12 +34,4 @@ function matchersWithOptions(userOptions = {}, extendAjv) {
 }
 
 module.exports.matchers = matchersWithOptions();
-module.exports.matchersWithFormats = (formats = {}) => {
-  // eslint-disable-next-line no-console
-  console.warn(chalk.yellow(
-    'matchersWithFormats has been deprecated and will be removed in the next major version.\n'
-    + 'Please use matchersWithOptions instead.'
-  ));
-  return matchersWithOptions({ unknownFormats: true, formats });
-};
 module.exports.matchersWithOptions = matchersWithOptions;
