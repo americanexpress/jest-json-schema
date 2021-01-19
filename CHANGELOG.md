@@ -1,3 +1,17 @@
+# [5.0.0](https://github.com/americanexpress/jest-json-schema/compare/v4.0.0...v5.0.0) (2021-01-19)
+
+
+### chore
+
+* **main:** remove the deprecated function matchersWithFormats ([#23](https://github.com/americanexpress/jest-json-schema/issues/23)) ([94f8ce1](https://github.com/americanexpress/jest-json-schema/commit/94f8ce174d0f20e4d66e8bdc520c56eab35b8141))
+
+
+### BREAKING CHANGES
+
+* **main:** matchersWithFormats is no longer available. Use matchersWithOptions instead.
+
+Co-authored-by: Nelly Kiboi <nelly.j.kiboi@aexp.com>
+
 # [4.0.0](https://github.com/americanexpress/jest-json-schema/compare/v3.0.0...v4.0.0) (2021-01-19)
 
 
