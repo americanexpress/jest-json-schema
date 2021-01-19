@@ -15,7 +15,7 @@
 const chalk = require('chalk');
 const toBeValidSchemaUnderTest = require('../..').matchers.toBeValidSchema;
 
-chalk.enabled = false;
+chalk.level = 0;
 
 expect.extend({
   toBeValidSchemaUnderTest,

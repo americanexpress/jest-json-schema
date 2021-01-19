@@ -32,8 +32,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "ajv": "^6.10.2",
-    "chalk": "^2.4.1",
-    "jest-matcher-utils": "^24.0.0"
+    "chalk": "^4.1.0",
+    "jest-matcher-utils": "^26.6.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
@@ -54,7 +54,7 @@
     "semantic-release": "^17.1.2"
   },
   "engines": {
-    "node": ">= 6"
+    "node": "^12.13.0 || ^14.15.0 || >=15.0.0"
   },
   "husky": {
     "hooks": {
