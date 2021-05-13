@@ -220,6 +220,19 @@ test('using schemaB which already references a definition in schemaA', () => {
   });
 });
 ```
+## TypeScript support
+
+If you would like to use `jest-json-schema` library in your TypeScript project, remember to install type definitions from `@types/jest-json-schema` package.
+
+```
+npm install --save-dev @types/jest-json-schema
+```
+
+Or if `yarn` is your package manager of choice:
+
+```
+yarn add @types/jest-json-schema --dev
+```
 
 ## Contributing
 
