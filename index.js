@@ -12,17 +12,20 @@
  * the License.
  */
 
-const Ajv = require('ajv');
+const Ajv = require('ajv').default;
+const addFormats = require('ajv-formats');
 const buildToMatchSchema = require('./matchers/toMatchSchema');
 const buildToBeValidSchema = require('./matchers/toBeValidSchema');
 
 function matchersWithOptions(userOptions = {}, extendAjv) {
   const defaultOptions = {
     allErrors: true,
+    strict: false,
   };
 
   const options = Object.assign(defaultOptions, userOptions);
   const ajv = new Ajv(options);
+  addFormats(ajv);
   if (typeof extendAjv === 'function') {
     extendAjv(ajv);
   }

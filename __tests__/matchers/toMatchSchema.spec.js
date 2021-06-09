@@ -392,10 +392,10 @@ describe('toMatchSchema', () => {
 "expect(received).toMatchSchema(schema)
 
 received
-  .name should be string
+  /name should be string
     Received: <null>
     Path:     testVerboseReadmeSchema#/properties/name/type
-  .dob should match format \\"date\\"
+  /dob should match format \\"date\\"
     Received: <string> 02-29-2000
     Path:     testVerboseReadmeSchema#/properties/dob/format
 "
