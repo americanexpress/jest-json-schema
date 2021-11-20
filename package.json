@@ -31,7 +31,8 @@
   "author": "Jimmy King <jimmy.king@aexp.com> (https://github.com/10xLaCroixDrinker)",
   "license": "Apache-2.0",
   "dependencies": {
-    "ajv": "^6.10.2",
+    "ajv": "^7.0.3",
+    "ajv-formats": "^1.5.1",
     "chalk": "^4.1.0",
     "jest-matcher-utils": "^26.6.1"
   },
@@ -44,7 +45,7 @@
     "@semantic-release/github": "^7.1.1",
     "@semantic-release/npm": "^7.0.6",
     "@semantic-release/release-notes-generator": "^9.0.1",
-    "ajv-keywords": "^3.4.1",
+    "ajv-keywords": "^4.0.0",
     "amex-jest-preset": "^6.1.0",
     "eslint": "^5.2.0",
     "eslint-config-amex": "^9.0.0",

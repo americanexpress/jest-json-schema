@@ -73,8 +73,7 @@ const formatForPrint = (input, displayType = true) => {
 };
 
 function buildToMatchSchema(ajv) {
-  // eslint-disable-next-line no-underscore-dangle
-  const { verbose } = ajv._opts;
+  const { verbose } = ajv.opts;
 
   return function toMatchSchema(received, schema, description) {
     const validate = ajv.compile(schema);
