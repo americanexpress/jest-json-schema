@@ -55,15 +55,14 @@ describe('toBeValidSchema', () => {
 
   it('assertion error matcherResult property contains matcher name and actual value', () => {
     schema.properties = [];
-    try {
-      expect(schema).toBeValidSchemaUnderTest();
-    } catch (error) {
-      expect(error.matcherResult).toEqual({
-        actual: schema,
-        message: expect.any(Function),
-        name: 'toBeValidSchema',
-        pass: false,
-      });
-    }
+    expect(() => expect(schema).toBeValidSchemaUnderTest())
+      .toThrow(expect.objectContaining({
+        matcherResult: {
+          actual: schema,
+          message: expect.any(Function),
+          name: 'toBeValidSchema',
+          pass: false,
+        },
+      }));
   });
 });

@@ -44,7 +44,7 @@ const ERROR_KEYWORDS_SHOW_RECEIVED = [
   'not',
 ];
 
-const isObject = input => Object.prototype.toString.call(input) === '[object Object]';
+const isObject = (input) => Object.prototype.toString.call(input) === '[object Object]';
 
 const formatForPrint = (input, displayType = true) => {
   // Undefined and null are both a type and a value

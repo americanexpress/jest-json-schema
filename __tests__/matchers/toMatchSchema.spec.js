@@ -103,16 +103,15 @@ describe('toMatchSchema', () => {
   it('assertion error matcherResult property contains matcher name and actual value', () => {
     schema.additionalProperties = false;
     const testObj = { another: 'property' };
-    try {
-      expect(testObj).toMatchSchemaUnderTest(schema);
-    } catch (error) {
-      expect(error.matcherResult).toEqual({
-        actual: testObj,
-        message: expect.any(Function),
-        name: 'toMatchSchema',
-        pass: false,
-      });
-    }
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
+      .toThrow(expect.objectContaining({
+        matcherResult: {
+          actual: testObj,
+          message: expect.any(Function),
+          name: 'toMatchSchema',
+          pass: false,
+        },
+      }));
   });
 
   describe('custom formats', () => {
