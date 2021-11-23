@@ -97,9 +97,11 @@ function buildToMatchSchema(ajv) {
 
           if (error.keyword === 'additionalProperties') {
             line = `${error.message}, but found '${error.params.additionalProperty}'`;
-          } else if (error.dataPath) {
-            line = `${error.dataPath} ${error.message}`;
+          } else if (error.instancePath) {
+            line = `${error.instancePath} ${error.message}`;
           }
+
+          // console.log(error);
 
           if (verbose && error.schemaPath) {
             // Only output expected value if it is not already described in the error.message
@@ -116,8 +118,8 @@ function buildToMatchSchema(ajv) {
               }
             }
 
-            // Show received value if there is a dataPath
-            if (error.dataPath) {
+            // Show received value if there is a instancePath
+            if (error.instancePath) {
               line += `\n    Received: ${formatForPrint(error.data)}`;
 
               // Otherwise show received output only for specific keywords
