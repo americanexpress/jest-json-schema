@@ -4,7 +4,7 @@ exports[`toMatchSchema custom formats bcp47 it does not match 123 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .locale should match format \\"bcp47\\"
+  /locale must match format \\"bcp47\\"
 "
 `;
 
@@ -12,7 +12,7 @@ exports[`toMatchSchema custom formats bcp47 it does not match EN-US 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .locale should match format \\"bcp47\\"
+  /locale must match format \\"bcp47\\"
 "
 `;
 
@@ -20,7 +20,7 @@ exports[`toMatchSchema custom formats bcp47 it does not match en_US 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .locale should match format \\"bcp47\\"
+  /locale must match format \\"bcp47\\"
 "
 `;
 
@@ -28,7 +28,7 @@ exports[`toMatchSchema custom formats bcp47 it does not match en-us 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .locale should match format \\"bcp47\\"
+  /locale must match format \\"bcp47\\"
 "
 `;
 
@@ -36,7 +36,7 @@ exports[`toMatchSchema custom formats bcp47 it does not match enus 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .locale should match format \\"bcp47\\"
+  /locale must match format \\"bcp47\\"
 "
 `;
 
@@ -44,7 +44,7 @@ exports[`toMatchSchema custom keywords instanceof 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  should pass \\"instanceof\\" keyword validation
+  must pass \\"instanceof\\" keyword validation
     Expected: <string> Array
     Path:     #/instanceof
 "
@@ -54,7 +54,7 @@ exports[`toMatchSchema custom keywords typeof 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  should pass \\"typeof\\" keyword validation
+  must pass \\"typeof\\" keyword validation
     Expected: <string> string
     Path:     #/typeof
 "
@@ -64,7 +64,7 @@ exports[`toMatchSchema does not crash on circular references 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .hello should be string
+  /hello must be string
 "
 `;
 
@@ -80,7 +80,7 @@ exports[`toMatchSchema fails for missing required keys 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  should have required property 'hello'
+  must have required property 'hello'
 "
 `;
 
@@ -88,7 +88,7 @@ exports[`toMatchSchema fails for wrong type 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .hello should be string
+  /hello must be string
 "
 `;
 
@@ -96,7 +96,7 @@ exports[`toMatchSchema fails when additional properties are found but forbidden 
 "expect(received).toMatchSchema(schema)
 
 received
-  should NOT have additional properties, but found 'another'
+  must NOT have additional properties, but found 'another'
 "
 `;
 
@@ -104,7 +104,7 @@ exports[`toMatchSchema fails when pattern does not match 1`] = `
 "expect(received).toMatchSchema(schema)
 
 received
-  .hello should match pattern \\"[a-z]+\\"
+  /hello must match pattern \\"[a-z]+\\"
 "
 `;
 
@@ -112,7 +112,7 @@ exports[`toMatchSchema includes the description in the error when provided 1`] =
 "expect(received).toMatchSchema(schema)
 
 en-US language pack
-  .hello should be string
+  /hello must be string
 "
 `;
 
@@ -120,7 +120,7 @@ exports[`toMatchSchema output verbose errors should display schema $id in the sc
 "expect(received).toMatchSchema(schema)
 
 received
-  .test should be number
+  /test must be number
     Received: <string> 123
     Path:     testSchema#/allOf/0/properties/test/type
 "
@@ -190,131 +190,137 @@ exports[`toMatchSchema output verbose errors should output error with details pr
 "expect(received).toMatchSchema(schema)
 
 received
-  should NOT have more than 1 properties
+  must NOT have more than 1 items
     Path:     #/allOf/0/maxProperties
-  should NOT have fewer than 999 properties
+  must NOT have fewer than 999 items
     Path:     #/allOf/0/minProperties
-  should match pattern \\"^false\\"
+  must have required property 'testRequired'
+    Path:     #/allOf/0/required
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testType' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testNotEmpty' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testEnum' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testConst' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testFormat' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testPattern' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testItems' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testNumber' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testIf' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testElse' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  should match pattern \\"^false\\"
+  must match pattern \\"^false\\"
     Path:     #/allOf/0/propertyNames/pattern
-  property name 'testThen' is invalid
+  property name must be valid
     Expected: {\\"pattern\\":\\"^false\\"}
     Path:     #/allOf/0/propertyNames
-  .testType should be null
+  /testType must be null
     Received: <boolean> false
     Path:     #/allOf/0/properties/testType/type
-  .testNotEmpty should NOT be shorter than 1 characters
+  /testNotEmpty must NOT have fewer than 1 characters
     Received: <empty string>
     Path:     #/allOf/0/properties/testNotEmpty/minLength
-  .testEnum should be equal to one of the allowed values
+  /testEnum must be equal to one of the allowed values
     Expected: [1,2]
     Received: <boolean> false
     Path:     #/allOf/0/properties/testEnum/enum
-  .testConst should be equal to constant
+  /testConst must be equal to constant
     Expected: <boolean> true
     Received: <boolean> false
     Path:     #/allOf/0/properties/testConst/const
-  .testFormat should match format \\"email\\"
+  /testFormat must match format \\"email\\"
     Received: <string> test
     Path:     #/allOf/0/properties/testFormat/format
-  .testPattern should match pattern \\"[0-9]+\\"
+  /testPattern must match pattern \\"[0-9]+\\"
     Received: <string> test
     Path:     #/allOf/0/properties/testPattern/pattern
-  .testItems should NOT have more than 1 items
+  /testItems must NOT have more than 1 items
     Received: <array> [false,1]
     Path:     #/allOf/0/properties/testItems/maxItems
-  .testItems should NOT have fewer than 5 items
+  /testItems must NOT have fewer than 5 items
     Received: <array> [false,1]
     Path:     #/allOf/0/properties/testItems/minItems
-  .testItems[0] should be equal to constant
+  /testItems/0 must be equal to constant
     Expected: <boolean> true
     Received: <boolean> false
     Path:     #/allOf/0/properties/testItems/items/const
-  .testItems[1] should be equal to constant
+  /testItems/1 must be equal to constant
     Expected: <boolean> true
     Received: <number> 1
     Path:     #/allOf/0/properties/testItems/items/const
-  .testItems[0] should be equal to constant
+  /testItems/0 must be equal to constant
     Expected: <boolean> true
     Received: <boolean> false
     Path:     #/allOf/0/properties/testItems/contains/const
-  .testItems[1] should be equal to constant
+  /testItems/1 must be equal to constant
     Expected: <boolean> true
     Received: <number> 1
     Path:     #/allOf/0/properties/testItems/contains/const
-  .testItems should contain a valid item
+  /testItems must contain at least 1 valid item(s)
     Expected: {\\"const\\":true}
     Received: <array> [false,1]
     Path:     #/allOf/0/properties/testItems/contains
-  .testNumber should be <= 0
+  /testNumber must be <= 0
     Received: <number> 1
     Path:     #/allOf/0/properties/testNumber/maximum
-  .testNumber should be > 999
+  /testNumber must be >= 999
+    Received: <number> 1
+    Path:     #/allOf/0/properties/testNumber/minimum
+  /testNumber must be < 1
+    Received: <number> 1
+    Path:     #/allOf/0/properties/testNumber/exclusiveMaximum
+  /testNumber must be > 999
     Received: <number> 1
     Path:     #/allOf/0/properties/testNumber/exclusiveMinimum
-  .testNumber should be multiple of 5
+  /testNumber must be multiple of 5
     Received: <number> 1
     Path:     #/allOf/0/properties/testNumber/multipleOf
-  should have required property 'testRequired'
-    Path:     #/allOf/0/required
-  .testThen should be equal to constant
+  /testThen must be equal to constant
     Expected: <boolean> true
     Received: <null>
     Path:     #/allOf/1/then/properties/testThen/const
-  should match \\"then\\" schema
+  must match \\"then\\" schema
     Expected: {\\"type\\":\\"object\\",\\"properties\\":{\\"testThen\\":{\\"const\\":true}}}
     Received: {\\"testType\\":false,\\"testNotEmpty\\":\\"\\",\\"testEnum\\":false,\\"testConst\\":false,\\"testFormat\\":\\"test\\",\\"testPattern\\":\\"test\\",\\"testItems\\":[false,1],\\"testNumber\\":1,\\"testIf\\":true,\\"testThen\\":null}
     Path:     #/allOf/1/if
-  should NOT be valid
+  must NOT be valid
     Expected: {\\"type\\":\\"object\\"}
     Received: {\\"testType\\":false,\\"testNotEmpty\\":\\"\\",\\"testEnum\\":false,\\"testConst\\":false,\\"testFormat\\":\\"test\\",\\"testPattern\\":\\"test\\",\\"testItems\\":[false,1],\\"testNumber\\":1,\\"testIf\\":true,\\"testThen\\":null}
     Path:     #/allOf/2/not

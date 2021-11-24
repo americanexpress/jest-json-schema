@@ -45,7 +45,7 @@ expect.extend(matchers);
 Or if you want it available for all test files then set it up the same way in a
 [test framework script file](http://facebook.github.io/jest/docs/configuration.html#setuptestframeworkscriptfile-string)
 
-You can pass [Ajv options](http://epoberezkin.github.io/ajv/#options) using
+You can pass [Ajv options](https://ajv.js.org/options.html) using
 `matchersWithOptions` and passing it your options object. The only option passed
 by default is `allErrors: true`.
 
