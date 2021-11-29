@@ -44,7 +44,7 @@ const ERROR_KEYWORDS_SHOW_RECEIVED = [
   'not',
 ];
 
-const isObject = input => Object.prototype.toString.call(input) === '[object Object]';
+const isObject = (input) => Object.prototype.toString.call(input) === '[object Object]';
 
 const formatForPrint = (input, displayType = true) => {
   // Undefined and null are both a type and a value
@@ -73,8 +73,7 @@ const formatForPrint = (input, displayType = true) => {
 };
 
 function buildToMatchSchema(ajv) {
-  // eslint-disable-next-line no-underscore-dangle
-  const { verbose } = ajv._opts;
+  const { verbose } = ajv.opts;
 
   return function toMatchSchema(received, schema, description) {
     const validate = ajv.compile(schema);
@@ -98,9 +97,11 @@ function buildToMatchSchema(ajv) {
 
           if (error.keyword === 'additionalProperties') {
             line = `${error.message}, but found '${error.params.additionalProperty}'`;
-          } else if (error.dataPath) {
-            line = `${error.dataPath} ${error.message}`;
+          } else if (error.instancePath) {
+            line = `${error.instancePath} ${error.message}`;
           }
+
+          // console.log(error);
 
           if (verbose && error.schemaPath) {
             // Only output expected value if it is not already described in the error.message
@@ -117,8 +118,8 @@ function buildToMatchSchema(ajv) {
               }
             }
 
-            // Show received value if there is a dataPath
-            if (error.dataPath) {
+            // Show received value if there is a instancePath
+            if (error.instancePath) {
               line += `\n    Received: ${formatForPrint(error.data)}`;
 
               // Otherwise show received output only for specific keywords

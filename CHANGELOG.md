@@ -1,3 +1,17 @@
+# [6.0.0](https://github.com/americanexpress/jest-json-schema/compare/v5.0.0...v6.0.0) (2021-11-24)
+
+
+### Features
+
+* **ajv:** update ajv to 8 ([5145fe6](https://github.com/americanexpress/jest-json-schema/commit/5145fe697639750e8bac51a8adf1972b3cae815a))
+
+
+### BREAKING CHANGES
+
+* **ajv:** AJV API schema has changed
+
+* test(toMatchSchema): fixed issue with inline snapshot/prettiers changes
+
 # [5.0.0](https://github.com/americanexpress/jest-json-schema/compare/v4.0.0...v5.0.0) (2021-01-19)
 
 

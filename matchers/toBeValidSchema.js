@@ -26,8 +26,8 @@ function buildToBeValidSchema(ajv) {
         ajv.errors.forEach((error) => {
           let line = error.message;
 
-          if (error.dataPath) {
-            line = `${error.dataPath} ${error.message}`;
+          if (error.instancePath) {
+            line = `${error.instancePath} ${error.message}`;
           }
 
           messageToPrint += chalk.red(`  ${line}\n`);
