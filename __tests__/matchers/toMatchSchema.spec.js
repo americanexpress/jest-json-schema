@@ -20,11 +20,14 @@ const toMatchSchemaWithFormatsUnderTest = require('../..').matchersWithOptions({
     bcp47: /^[a-z]{2}-[A-Z]{2}$/,
   },
 }).toMatchSchema;
-const toMatchSchemaWithOptionsUnderTest = require('../..').matchersWithOptions({
-  verbose: true,
-}, (ajv) => {
-  ajvKeywords(ajv, ['typeof', 'instanceof']);
-}).toMatchSchema;
+const toMatchSchemaWithOptionsUnderTest = require('../..').matchersWithOptions(
+  {
+    verbose: true,
+  },
+  (ajv) => {
+    ajvKeywords(ajv, ['typeof', 'instanceof']);
+  }
+).toMatchSchema;
 
 chalk.level = 0;
 
@@ -55,20 +58,17 @@ describe('toMatchSchema', () => {
 
   it('fails for wrong type', () => {
     const testObj = { hello: 1 };
-    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
-      .toThrowErrorMatchingSnapshot();
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema)).toThrowErrorMatchingSnapshot();
   });
 
   it('fails for missing required keys', () => {
-    expect(() => expect({}).toMatchSchemaUnderTest(schema))
-      .toThrowErrorMatchingSnapshot();
+    expect(() => expect({}).toMatchSchemaUnderTest(schema)).toThrowErrorMatchingSnapshot();
   });
 
   it('fails when pattern does not match', () => {
     schema.properties.hello.pattern = '[a-z]+';
     const testObj = { hello: '123' };
-    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
-      .toThrowErrorMatchingSnapshot();
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema)).toThrowErrorMatchingSnapshot();
   });
 
   it('fails when additional properties are found but forbidden', () => {
@@ -77,42 +77,39 @@ describe('toMatchSchema', () => {
       hello: 'world',
       another: 'property',
     };
-    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
-      .toThrowErrorMatchingSnapshot();
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema)).toThrowErrorMatchingSnapshot();
   });
 
   it('includes the description in the error when provided', () => {
     const testObj = { hello: 1 };
-    expect(() => expect(testObj).toMatchSchemaUnderTest(schema, 'en-US language pack'))
-      .toThrowErrorMatchingSnapshot();
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema, 'en-US language pack')
+    ).toThrowErrorMatchingSnapshot();
   });
 
   it('fails for matching schema when using .not', () => {
     const testObj = { hello: 'world' };
-    expect(() => expect(testObj).not.toMatchSchemaUnderTest(schema))
-      .toThrowErrorMatchingSnapshot();
+    expect(() => expect(testObj).not.toMatchSchemaUnderTest(schema)).toThrowErrorMatchingSnapshot();
   });
 
   it('does not crash on circular references', () => {
     const testObj = {};
     testObj.hello = testObj;
-    expect(() => expect(testObj).toMatchSchemaUnderTest(schema))
-      .toThrowErrorMatchingSnapshot();
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema)).toThrowErrorMatchingSnapshot();
   });
 
   it('assertion error matcherResult property contains matcher name and actual value', () => {
     schema.additionalProperties = false;
     const testObj = { another: 'property' };
-    try {
-      expect(testObj).toMatchSchemaUnderTest(schema);
-    } catch (error) {
-      expect(error.matcherResult).toEqual({
-        actual: testObj,
-        message: expect.any(Function),
-        name: 'toMatchSchema',
-        pass: false,
-      });
-    }
+    expect(() => expect(testObj).toMatchSchemaUnderTest(schema)).toThrow(
+      expect.objectContaining({
+        matcherResult: {
+          actual: testObj,
+          message: expect.any(Function),
+          name: 'toMatchSchema',
+          pass: false,
+        },
+      })
+    );
   });
 
   describe('custom formats', () => {
@@ -125,26 +122,16 @@ describe('toMatchSchema', () => {
         };
       });
 
-      [
-        'en-US',
-        'nl-NL',
-        'xx-XX',
-      ].forEach((locale) => {
+      ['en-US', 'nl-NL', 'xx-XX'].forEach((locale) => {
         it(`it matches ${locale}`, () => {
           expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema);
         });
       });
 
-      [
-        'en-us',
-        'EN-US',
-        'en_US',
-        'enus',
-        '123',
-      ].forEach((locale) => {
+      ['en-us', 'EN-US', 'en_US', 'enus', '123'].forEach((locale) => {
         it(`it does not match ${locale}`, () => {
-          expect(() => expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema))
-            .toThrowErrorMatchingSnapshot();
+          expect(() => expect({ locale }).toMatchSchemaWithFormatsUnderTest(schema)
+          ).toThrowErrorMatchingSnapshot();
         });
       });
     });
@@ -159,8 +146,8 @@ describe('toMatchSchema', () => {
       // Check error is thrown by custom keyword
       expect(() => expect(false).toMatchSchemaWithOptionsUnderTest({
         typeof: 'string',
-      }))
-        .toThrowErrorMatchingSnapshot();
+      })
+      ).toThrowErrorMatchingSnapshot();
     });
 
     it('instanceof', () => {
@@ -171,54 +158,52 @@ describe('toMatchSchema', () => {
       // Check error is thrown by custom keyword
       expect(() => expect(false).toMatchSchemaWithOptionsUnderTest({
         instanceof: 'Array',
-      }))
-        .toThrowErrorMatchingSnapshot();
+      })
+      ).toThrowErrorMatchingSnapshot();
     });
   });
 
   describe('output verbose errors', () => {
     it('should output an error with only the received input printed', () => {
       // Null
-      expect(() => expect(null)
-        .not.toMatchSchemaWithOptionsUnderTest({
-          type: 'null',
-        }))
-        .toThrowErrorMatchingSnapshot();
+      expect(() => expect(null).not.toMatchSchemaWithOptionsUnderTest({
+        type: 'null',
+      })
+      ).toThrowErrorMatchingSnapshot();
 
       // Boolean
-      expect(() => expect(true)
-        .not.toMatchSchemaWithOptionsUnderTest({
-          type: 'boolean',
-        }))
-        .toThrowErrorMatchingSnapshot();
+      expect(() => expect(true).not.toMatchSchemaWithOptionsUnderTest({
+        type: 'boolean',
+      })
+      ).toThrowErrorMatchingSnapshot();
 
       // Number
-      expect(() => expect(1)
-        .not.toMatchSchemaWithOptionsUnderTest({
-          type: 'number',
-        }))
-        .toThrowErrorMatchingSnapshot();
+      expect(() => expect(1).not.toMatchSchemaWithOptionsUnderTest({
+        type: 'number',
+      })
+      ).toThrowErrorMatchingSnapshot();
 
       // String
-      expect(() => expect('this is valid but expect().not.toMatchSchema has been used')
-        .not.toMatchSchemaWithOptionsUnderTest({
-          type: 'string',
-        }))
-        .toThrowErrorMatchingSnapshot();
+      expect(() => expect(
+        'this is valid but expect().not.toMatchSchema has been used'
+      ).not.toMatchSchemaWithOptionsUnderTest({
+        type: 'string',
+      })
+      ).toThrowErrorMatchingSnapshot();
 
       // Object
-      expect(() => expect({})
-        .not.toMatchSchemaWithOptionsUnderTest({
-          type: 'object',
-        }))
-        .toThrowErrorMatchingSnapshot();
+      expect(() => expect({}).not.toMatchSchemaWithOptionsUnderTest({
+        type: 'object',
+      })
+      ).toThrowErrorMatchingSnapshot();
 
       // Array
-      expect(() => expect(['this is valid but expect().not.toMatchSchema has been used'])
-        .not.toMatchSchemaWithOptionsUnderTest({
-          minItems: 1,
-        }))
-        .toThrowErrorMatchingSnapshot();
+      expect(() => expect([
+        'this is valid but expect().not.toMatchSchema has been used',
+      ]).not.toMatchSchemaWithOptionsUnderTest({
+        minItems: 1,
+      })
+      ).toThrowErrorMatchingSnapshot();
     });
 
     it('should display schema $id in the schema path', () => {
@@ -226,16 +211,18 @@ describe('toMatchSchema', () => {
         test: '123',
       }).toMatchSchemaWithOptionsUnderTest({
         $id: 'testSchema',
-        allOf: [{
-          type: 'object',
-          properties: {
-            test: {
-              type: 'number',
+        allOf: [
+          {
+            type: 'object',
+            properties: {
+              test: {
+                type: 'number',
+              },
             },
           },
-        }],
-      }))
-        .toThrowErrorMatchingSnapshot();
+        ],
+      })
+      ).toThrowErrorMatchingSnapshot();
     });
 
     it('should output error with details printed per errored property', () => {
@@ -363,7 +350,8 @@ describe('toMatchSchema', () => {
             },
           },
         ],
-      })).toThrowErrorMatchingSnapshot();
+      })
+      ).toThrowErrorMatchingSnapshot();
     });
 
     it('ensure verbose readme example is correct', () => {
@@ -392,10 +380,10 @@ describe('toMatchSchema', () => {
 "expect(received).toMatchSchema(schema)
 
 received
-  .name should be string
+  /name must be string
     Received: <null>
     Path:     testVerboseReadmeSchema#/properties/name/type
-  .dob should match format \\"date\\"
+  /dob must match format \\"date\\"
     Received: <string> 02-29-2000
     Path:     testVerboseReadmeSchema#/properties/dob/format
 "
