@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/americanexpress/jest-json-schema/compare/v6.0.0...v6.1.0) (2022-01-24)
+
+
+### Features
+
+* **index:** add AjvClass option ([#44](https://github.com/americanexpress/jest-json-schema/issues/44)) ([e79d088](https://github.com/americanexpress/jest-json-schema/commit/e79d08844a453c5b2d394007f190302d9e613af0))
+
 # [6.0.0](https://github.com/americanexpress/jest-json-schema/compare/v5.0.0...v6.0.0) (2021-11-24)
 
 
