@@ -77,6 +77,15 @@ expect.extend(matchersWithOptions({ formats }, (ajv) => {
 }));
 ```
 
+You can also customize the `Ajv` class with the `AjvClass` option:
+
+```js
+import Ajv2020 from 'ajv/dist/2020'
+import { matchersWithOptions } from 'jest-json-schema';
+
+expect.extend(matchersWithOptions({ AjvClass: Ajv2020 }));
+```
+
 ### Verbose errors
 
 Ajv supports a verbose option flag which enables more information about individual

@@ -21,10 +21,12 @@ function matchersWithOptions(userOptions = {}, extendAjv) {
   const defaultOptions = {
     allErrors: true,
     strict: false,
+    AjvClass: Ajv,
   };
 
   const options = Object.assign(defaultOptions, userOptions);
-  const ajv = new Ajv(options);
+  const { AjvClass, ...ajvOptions } = options;
+  const ajv = new AjvClass(ajvOptions);
   addFormats(ajv);
   if (typeof extendAjv === 'function') {
     extendAjv(ajv);
