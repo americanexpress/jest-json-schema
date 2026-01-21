@@ -37,7 +37,7 @@
     "jest-matcher-utils": "^27.3.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
+    "@commitlint/cli": "^20.3.1",
     "@commitlint/config-conventional": "^8.2.0",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/commit-analyzer": "^8.0.1",
