@@ -39,12 +39,12 @@
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/commit-analyzer": "^8.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/github": "^7.1.1",
-    "@semantic-release/npm": "^7.0.6",
-    "@semantic-release/release-notes-generator": "^9.0.1",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^12.0.6",
+    "@semantic-release/npm": "^13.1.5",
+    "@semantic-release/release-notes-generator": "^14.1.0",
     "ajv-keywords": "^5.1.0",
     "amex-jest-preset": "^6.1.0",
     "eslint": "^7.32.0",
@@ -55,7 +55,7 @@
     "jest": "^25.5.4",
     "lockfile-lint": "^4.3.7",
     "prettier": "^2.4.1",
-    "semantic-release": "^17.1.2"
+    "semantic-release": "^25.0.3"
   },
   "engines": {
     "node": "^12.13.0 || ^14.15.0 || >=15.0.0"
