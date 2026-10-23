@@ -188,7 +188,7 @@ expect.extend(matchersWithOptions({
   // which means specific test schemas need to be created.
   // This is good for testing specific conditions for definition schemas.
   schemas: [schemaA]
-});
+}));
 
 test('schemaA is valid', () => {
   expect(schemaA).toBeValidSchema();
@@ -224,7 +224,7 @@ test('using schemaB which already references a definition in schemaA', () => {
   });
 
   // Invalid
-  ['1', true, false, [], {}].forEach(value => {
+  [1, true, false, [], {}].forEach(value => {
      expect(value).not.toMatchSchema(schemaB);
   });
 });
